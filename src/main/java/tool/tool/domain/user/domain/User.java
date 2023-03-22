@@ -17,16 +17,16 @@ public class User {
     @Embedded
     private StuNumber stuNumber;
 
-    @Column(name = "oauth_code")
-    private String oauthCode;
+    @Column(name = "user_email")
+    private String email;
 
     protected User() {}
 
     @Builder
-    public User(Long id, String name, StuNumber stuNumber, String oauthCode) {
+    public User(Long id, String name, StuNumber stuNumber, String email) {
         this.id = id;
         this.name = name;
         this.stuNumber = stuNumber;
-        this.oauthCode = oauthCode;
+        this.email = email;
     }
 }
