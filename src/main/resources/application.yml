@@ -24,3 +24,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
         format_sql: true
     show-sql: true
+
+  jwt:
+    refresh-time: 1209600000 # 2?
+    access-time: 3600000 # 1??
+    prefix: Bearer
+    header: Authorization
+    secret-key: dlxogusrhkwjstngidrhkdlehdgnsdmltool

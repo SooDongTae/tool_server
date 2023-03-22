@@ -3,6 +3,7 @@ package tool.tool.domain.user.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.user.domain.type.Authority;
 import tool.tool.global.entity.BaseTimeEntity;
 
 @Entity
@@ -21,13 +22,17 @@ public class User extends BaseTimeEntity {
     @Column(name = "user_email")
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
+
     protected User() {}
 
     @Builder
-    public User(Long id, String name, StuNumber stuNumber, String email) {
+    public User(Long id, String name, StuNumber stuNumber, String email, Authority authority) {
         this.id = id;
         this.name = name;
         this.stuNumber = stuNumber;
         this.email = email;
+        this.authority = authority;
     }
 }
