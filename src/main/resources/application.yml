@@ -17,9 +17,10 @@ spring:
     database: sql-server
     generate-ddl: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     open-in-view: false
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
         format_sql: true
     show-sql: true
