@@ -3,10 +3,11 @@ package tool.tool.domain.user.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.global.entity.BaseTimeEntity;
 
 @Entity
 @Getter
-public class User {
+public class User extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
