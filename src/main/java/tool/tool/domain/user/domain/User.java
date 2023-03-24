@@ -1,6 +1,7 @@
 package tool.tool.domain.user.domain;
 
 import jakarta.persistence.*;
+import leehj050211.bsmOauth.dto.resource.BsmUserResource;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.user.domain.type.Authority;
@@ -34,5 +35,16 @@ public class User extends BaseTimeEntity {
         this.stuNumber = stuNumber;
         this.email = email;
         this.authority = authority;
+    }
+
+    public User update(BsmUserResource resource) {
+        this.email = resource.getEmail();
+        this.name = resource.getStudent().getName();
+        this.stuNumber = StuNumber.builder()
+                .grade(resource.getStudent().getGrade())
+                .ban(resource.getStudent().getClassNo())
+                .num(resource.getStudent().getStudentNo())
+                .build();
+        return this;
     }
 }
