@@ -12,6 +12,7 @@ import tool.tool.global.security.jwt.config.JwtProperties;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -65,5 +66,9 @@ public class JwtTokenProvider {
                 .parseClaimsJws(token)
                 .getBody()
                 .get("email", String.class);
+    }
+
+    public LocalDateTime getExpiredAt() {
+        return LocalDateTime.now().plusSeconds(jwtProperties.getRefreshTime());
     }
 }
