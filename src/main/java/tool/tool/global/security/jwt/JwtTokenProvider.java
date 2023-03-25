@@ -26,11 +26,11 @@ public class JwtTokenProvider {
     }
 
     public String createAccessToken(String email) {
-        return createToken(email, jwtProperties.getAccessTime());
+        return createToken(email, 3600000L);
     }
 
     public String createRefreshToken(String email) {
-        return createToken(email, jwtProperties.getRefreshTime());
+        return createToken(email, 1209600000L);
     }
 
 
@@ -43,7 +43,7 @@ public class JwtTokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + time))
-                .signWith(getSecretKey(jwtProperties.getSecretKey()), SignatureAlgorithm.HS256)
+                .signWith(getSecretKey("dlxogusrhkwjstngidrhkdlehdgnsdmltool"), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -69,6 +69,6 @@ public class JwtTokenProvider {
     }
 
     public LocalDateTime getExpiredAt() {
-        return LocalDateTime.now().plusSeconds(jwtProperties.getRefreshTime());
+        return LocalDateTime.now().plusSeconds(jwtProperties.getRefreshTime() / 1000);
     }
 }

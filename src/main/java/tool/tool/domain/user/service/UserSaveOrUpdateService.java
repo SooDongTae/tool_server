@@ -6,6 +6,7 @@ import leehj050211.bsmOauth.exception.BsmOAuthCodeNotFoundException;
 import leehj050211.bsmOauth.exception.BsmOAuthInvalidClientException;
 import leehj050211.bsmOauth.exception.BsmOAuthTokenNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.user.domain.StuNumber;
 import tool.tool.domain.user.domain.User;
@@ -15,6 +16,7 @@ import tool.tool.domain.user.domain.type.Authority;
 import java.io.IOException;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 @Transactional
 public class UserSaveOrUpdateService {

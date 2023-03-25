@@ -7,11 +7,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Getter
-@Configuration
 @ConfigurationProperties("bsm")
 public class BsmOauthProperties {
-    private String client_id;
-    private String secret_key;
+    private final String client_id;
+    private final String secret_key;
+
+    public BsmOauthProperties(String client_id, String secret_key) {
+        this.client_id = client_id;
+        this.secret_key = secret_key;
+    }
 
     @Bean("bsmOauth")
     public BsmOauth bsmOauth() {
