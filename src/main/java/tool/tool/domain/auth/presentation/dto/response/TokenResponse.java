@@ -4,18 +4,17 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
-public class TokenResponseDto {
+public class TokenResponse {
     private String accessToken;
     private String refreshToken;
     private LocalDateTime expire_at;
 
-    protected TokenResponseDto() {}
+    protected TokenResponse() {}
 
     @Builder
-    public TokenResponseDto(String accessToken, String refreshToken, LocalDateTime expire_at) {
+    public TokenResponse(String accessToken, String refreshToken, LocalDateTime expire_at) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.expire_at = expire_at;
