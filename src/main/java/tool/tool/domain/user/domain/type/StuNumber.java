@@ -1,4 +1,4 @@
-package tool.tool.domain.user.domain;
+package tool.tool.domain.user.domain.type;
 
 
 import jakarta.persistence.Embeddable;
