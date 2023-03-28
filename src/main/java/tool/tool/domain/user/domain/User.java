@@ -5,7 +5,10 @@ import leehj050211.bsmOauth.dto.resource.BsmUserResource;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.user.domain.type.Authority;
+import tool.tool.domain.user.domain.type.StuNumber;
 import tool.tool.global.entity.BaseTimeEntity;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +28,9 @@ public class User extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private Authority authority;
+
+    @OneToMany(mappedBy = "user")
+    private List<Leader> leaders;
 
     protected User() {}
 
