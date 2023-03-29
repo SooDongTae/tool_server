@@ -9,6 +9,7 @@ import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "group_buying")
@@ -35,12 +36,12 @@ public class GroupBuying extends BaseTimeEntity {
     private Leader leader;
 
     @OneToMany(mappedBy = "groupBuying")
-    private Participant participant;
+    private List<Participant> participants;
 
     protected GroupBuying() {}
 
     @Builder
-    public GroupBuying(Long id, String title, String content, int cost, String imgSrc, LocalDateTime untilAt, Leader leader, Participant participant) {
+    public GroupBuying(Long id, String title, String content, int cost, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -48,6 +49,6 @@ public class GroupBuying extends BaseTimeEntity {
         this.imgSrc = imgSrc;
         this.untilAt = untilAt;
         this.leader = leader;
-        this.participant = participant;
+        this.participants = participants;
     }
 }
