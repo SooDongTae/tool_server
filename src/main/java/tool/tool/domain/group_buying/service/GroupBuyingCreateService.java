@@ -17,6 +17,7 @@ public class GroupBuyingCreateService {
     private final GroupBuyingFacade groupBuyingFacade;
     private final UserFacade userFacade;
     private final LeaderFacade leaderFacade;
+
     public void execute(GroupBuyingCreateRequest request) {
         User user = userFacade.findUserById(request.getLeaderId());
         Leader leader = leaderFacade.saveLeader(user);

@@ -29,4 +29,10 @@ public class GroupBuyingFacade {
                         .build()
         );
     }
+
+    @Transactional
+    public GroupBuying findGroupBuyingById(Long id) {
+        return groupBuyingRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("group_buying not found"));
+    }
 }

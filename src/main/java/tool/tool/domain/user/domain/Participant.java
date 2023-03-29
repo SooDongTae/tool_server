@@ -21,19 +21,19 @@ public class Participant {
     private GroupBuying groupBuying;
 
 
-    protected Participant() {}
-
-    @Builder
-    public Participant(Long id, User user) {
-        this.id = id;
-        this.user = user;
-    }
-
     public void setUser(User user) {
         if(this.user != null) {
             user.getParticipants().remove(this);
         }
         this.user = user;
         user.getParticipants().add(this);
+    }
+
+    public void setGroupBuying(GroupBuying groupBuying) {
+        if(this.groupBuying != null) {
+            groupBuying.getParticipants().remove(this);
+        }
+        this.groupBuying = groupBuying;
+        groupBuying.getParticipants().add(this);
     }
 }
