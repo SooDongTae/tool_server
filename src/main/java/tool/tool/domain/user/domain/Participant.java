@@ -3,6 +3,7 @@ package tool.tool.domain.user.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.group_buying.domain.GroupBuying;
 
 @Entity
 @Getter
@@ -14,6 +15,10 @@ public class Participant {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "group_buying_id")
+    private GroupBuying groupBuying;
 
 
     protected Participant() {}

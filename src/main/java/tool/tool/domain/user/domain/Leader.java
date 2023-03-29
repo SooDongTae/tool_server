@@ -3,6 +3,7 @@ package tool.tool.domain.user.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.group_buying.domain.GroupBuying;
 
 @Entity
 @Getter
@@ -21,6 +22,9 @@ public class Leader {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne
+    private GroupBuying groupBuying;
+
     protected Leader() {};
 
     @Builder
@@ -37,5 +41,9 @@ public class Leader {
         }
         this.user = user;
         user.getLeaders().add(this);
+    }
+
+    public void setGroupBuying(GroupBuying groupBuying) {
+        this.groupBuying = groupBuying;
     }
 }
