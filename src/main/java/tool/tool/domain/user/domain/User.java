@@ -32,6 +32,9 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user")
     private List<Leader> leaders;
 
+    @OneToMany(mappedBy = "user")
+    private List<Participant> participants;
+
     protected User() {}
 
     @Builder
