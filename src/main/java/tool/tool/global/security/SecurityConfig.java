@@ -1,5 +1,6 @@
 package tool.tool.global.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,10 +10,21 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
+import tool.tool.domain.user.domain.type.Authority;
+import tool.tool.global.security.jwt.JwtTokenProvider;
+import tool.tool.global.security.jwt.auth.AuthDetails;
+import tool.tool.global.security.jwt.auth.AuthDetailsService;
+import tool.tool.global.security.jwt.filter.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final AuthDetailsService authDetailsService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -29,7 +41,12 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/**").permitAll();
+                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/groupBuying/**").hasRole(Authority.ROLE_USER.getRole())
+                .and()
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, authDetailsService), UsernamePasswordAuthenticationFilter.class);
+
 
         return http.build();
     }

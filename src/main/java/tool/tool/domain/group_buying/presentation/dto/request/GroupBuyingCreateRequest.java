@@ -9,6 +9,6 @@ public class GroupBuyingCreateRequest {
     private Long leaderId;
     private String title;
     private String content;
-    private LocalDateTime untilAt;
+    private String untilAt;
     private int cost;
 }
