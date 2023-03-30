@@ -2,6 +2,7 @@ package tool.tool.domain.group_buying.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
@@ -18,6 +19,7 @@ public class GroupBuyingCreateService {
     private final UserFacade userFacade;
     private final LeaderFacade leaderFacade;
 
+    @Transactional
     public void execute(GroupBuyingCreateRequest request) {
         User user = userFacade.findUserById(request.getLeaderId());
         Leader leader = leaderFacade.saveLeader(user);

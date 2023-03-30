@@ -11,6 +11,9 @@ import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.LeaderRepository;
 import tool.tool.domain.user.domain.repository.UserRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Component
 @RequiredArgsConstructor
 public class GroupBuyingFacade {
@@ -19,13 +22,14 @@ public class GroupBuyingFacade {
 
     @Transactional
     public GroupBuying saveGroupBuying(GroupBuyingCreateRequest request, Leader leader) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         return groupBuyingRepository.save(
                 GroupBuying.builder()
                         .title(request.getTitle())
                         .content(request.getContent())
                         .cost(request.getCost())
                         .leader(leader)
-                        .untilAt(request.getUntilAt())
+                        .untilAt(LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter))
                         .build()
         );
     }
