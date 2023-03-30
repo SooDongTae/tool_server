@@ -8,6 +8,7 @@ import leehj050211.bsmOauth.exception.BsmOAuthTokenNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tool.tool.domain.auth.service.OauthGetResourceService;
 import tool.tool.domain.user.domain.type.StuNumber;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.UserRepository;
@@ -21,21 +22,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Transactional
 public class UserSaveOrUpdateService {
-    private final BsmOauth bsmOauth;
+
+    private final OauthGetResourceService oauthGetResourceService;
     private final UserRepository userRepository;
     private final UserFacade userFacade;
 
     public User execute(String authCode) {
-        String token;
-        BsmUserResource resource;
-        try {
-            token = bsmOauth.getToken(authCode);
-            resource = bsmOauth.getResource(token);
-        } catch (IOException | BsmOAuthCodeNotFoundException | BsmOAuthInvalidClientException |
-                 BsmOAuthTokenNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return saveOrUpdate(resource);
+        return saveOrUpdate(oauthGetResourceService.execute(authCode));
     }
 
     private User saveOrUpdate(BsmUserResource resource) {
