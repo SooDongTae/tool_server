@@ -12,6 +12,7 @@ import tool.tool.domain.user.domain.type.StuNumber;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.UserRepository;
 import tool.tool.domain.user.domain.type.Authority;
+import tool.tool.domain.user.facade.UserFacade;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -22,6 +23,8 @@ import java.util.Optional;
 public class UserSaveOrUpdateService {
     private final BsmOauth bsmOauth;
     private final UserRepository userRepository;
+    private final UserFacade userFacade;
+
     public User execute(String authCode) {
         String token;
         BsmUserResource resource;
@@ -38,24 +41,11 @@ public class UserSaveOrUpdateService {
     private User saveOrUpdate(BsmUserResource resource) {
         Optional<User> user = userRepository.findByEmail(resource.getEmail());
         if(user.isEmpty()) {
-            return saveUser(resource);
+            return userFacade.saveUser(resource);
         }
         return user.get().update(resource);
     }
 
-    private User saveUser(BsmUserResource resource) {
-        return userRepository.save(User.builder()
-                        .email(resource.getEmail())
-                        .name(resource.getStudent().getName())
-                        .stuNumber(StuNumber.builder()
-                                .grade(resource.getStudent().getGrade())
-                                .ban(resource.getStudent().getClassNo())
-                                .num(resource.getStudent().getStudentNo())
-                                .build()
-                        )
-                        .authority(Authority.ROLE_USER)
-                        .build()
-                );
-    }
+
 
 }
