@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.repository.GroupBuyingRepository;
+import tool.tool.domain.group_buying.exception.GroupBuyingNotFound;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.User;
@@ -37,6 +38,6 @@ public class GroupBuyingFacade {
     @Transactional
     public GroupBuying findGroupBuyingById(Long id) {
         return groupBuyingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("group_buying not found"));
+                .orElseThrow(() -> GroupBuyingNotFound.EXCEPTION);
     }
 }
