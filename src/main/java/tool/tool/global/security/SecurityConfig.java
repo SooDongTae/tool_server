@@ -1,5 +1,6 @@
 package tool.tool.global.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsUtils;
 import tool.tool.domain.user.domain.type.Authority;
+import tool.tool.global.error.filter.ExceptionFilter;
 import tool.tool.global.security.jwt.JwtTokenProvider;
 import tool.tool.global.security.jwt.auth.AuthDetails;
 import tool.tool.global.security.jwt.auth.AuthDetailsService;
@@ -25,6 +27,8 @@ public class SecurityConfig {
 
     private final AuthDetailsService authDetailsService;
     private final JwtTokenProvider jwtTokenProvider;
+    private final ObjectMapper mapper;
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -45,7 +49,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/groupBuying/**").hasRole(Authority.ROLE_USER.getRole())
                 .and()
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, authDetailsService), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, authDetailsService), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new ExceptionFilter(mapper), JwtAuthenticationFilter.class);
 
 
         return http.build();
