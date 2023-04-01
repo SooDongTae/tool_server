@@ -1,0 +1,11 @@
+package tool.tool.domain.group_buying.presentation;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/groupBuying")
+public class GroupBuyingInfoController {
+
+}
