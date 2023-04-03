@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.domain.type.Category;
+import tool.tool.domain.group_buying.domain.type.Status;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.User;
@@ -28,6 +29,9 @@ public class GroupBuying extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "img_src")
     private String imgSrc;
