@@ -49,12 +49,13 @@ public class GroupBuying extends BaseTimeEntity {
     protected GroupBuying() {}
 
     @Builder
-    public GroupBuying(Long id, String title, String content, int cost, Category category, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
+    public GroupBuying(Long id, String title, String content, int cost, Category category, Status status, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.cost = cost;
         this.category = category;
+        this.status = status;
         this.imgSrc = imgSrc;
         this.untilAt = untilAt;
         this.leader = leader;
