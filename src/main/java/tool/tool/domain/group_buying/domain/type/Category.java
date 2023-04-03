@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Category {
 
-    CATEGORY_PRODUCT("PRODUCT"),
-    CATEGORY_FOOD("FOOD"),
-    CATEGORY_CLOTHES("CLOTHES"),
-    CATEGORY_ETC("ETC");
+    PRODUCT("PRODUCT"),
+    FOOD("FOOD"),
+    CLOTHES("CLOTHES"),
+    ETC("ETC");
 
     private final String category;
 }
