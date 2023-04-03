@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.repository.GroupBuyingRepository;
 import tool.tool.domain.group_buying.domain.type.Category;
+import tool.tool.domain.group_buying.domain.type.Status;
 import tool.tool.domain.group_buying.exception.GroupBuyingNotFound;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.user.domain.Leader;
@@ -31,6 +32,7 @@ public class GroupBuyingFacade {
                         .content(request.getContent())
                         .cost(request.getCost())
                         .category(Category.valueOf(request.getCategory()))
+                        .status(Status.ACTIVATED)
                         .leader(leader)
                         .untilAt(LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter))
                         .build()
