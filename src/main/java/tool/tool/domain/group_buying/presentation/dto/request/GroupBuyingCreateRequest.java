@@ -10,5 +10,6 @@ public class GroupBuyingCreateRequest {
     private String title;
     private String content;
     private String untilAt;
+    private String category;
     private int cost;
 }

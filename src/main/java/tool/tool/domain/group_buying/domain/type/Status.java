@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum Category {
+public enum Status {
+    ACTIVATED("ACTIVATED"),
+    CANCELED("CANCELED"),
+    EXPIRED("EXPIRED");
 
-    PRODUCT("PRODUCT"),
-    FOOD("FOOD"),
-    CLOTHES("CLOTHES"),
-    ETC("ETC");
-
-    private final String category;
+    private final String name;
 }
