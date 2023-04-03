@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum Status {
-    ACTIVATED("ACTIVATED"),
-    CANCELED("CANCELED"),
-    EXPIRED("EXPIRED");
+    ACTIVATED("activated"),
+    CANCELED("canceled"),
+    EXPIRED("expired");
 
     private final String name;
 }
