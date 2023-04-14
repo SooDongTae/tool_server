@@ -23,9 +23,10 @@ public class GroupBuyingInfoController {
             @RequestParam int offset,
             @RequestParam String sortField,
             @RequestParam String sortWay,
-            @RequestParam String category)
+            @RequestParam String category,
+            @RequestParam String title)
     {
-        return groupBuyingListService.execute(limit, offset, sortField, sortWay, category);
+        return groupBuyingListService.execute(limit, offset, sortField, sortWay, category, title);
     }
 
     @GetMapping("/{id}")
