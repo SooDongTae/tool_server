@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public class GroupBuyingCreateRequest {
     private Long leaderId;
     private String title;
+    private int maxPeople;
     private String content;
     private String untilAt;
     private String category;
