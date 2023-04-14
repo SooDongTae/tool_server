@@ -3,6 +3,7 @@ package tool.tool.domain.group_buying.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
 import tool.tool.domain.user.domain.Leader;
@@ -27,6 +28,12 @@ public class GroupBuying extends BaseTimeEntity {
 
     private int cost;
 
+    @Column(name = "max_people")
+    private int maxPeople;
+
+    @Column(name = "current_people")
+    private int currentPeople;
+
     @Enumerated(EnumType.STRING)
     private Category category;
 
@@ -39,7 +46,7 @@ public class GroupBuying extends BaseTimeEntity {
     @Column(name = "until_at")
     private LocalDateTime untilAt;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leader_id")
     private Leader leader;
 
@@ -49,11 +56,13 @@ public class GroupBuying extends BaseTimeEntity {
     protected GroupBuying() {}
 
     @Builder
-    public GroupBuying(Long id, String title, String content, int cost, Category category, Status status, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
+    public GroupBuying(Long id, String title, String content, int cost, int maxPeople, int currentPeople, Category category, Status status, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.cost = cost;
+        this.maxPeople = maxPeople;
+        this.currentPeople = currentPeople;
         this.category = category;
         this.status = status;
         this.imgSrc = imgSrc;
