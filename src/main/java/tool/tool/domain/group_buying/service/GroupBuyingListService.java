@@ -22,11 +22,12 @@ public class GroupBuyingListService {
             int offset,
             String sortField,
             String sortWay,
-            String category
+            String category,
+            String title
     ) {
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
-                groupBuyingRepository.findGroupBuyingList(category, limit, offset, sortField, sortWay)
+                groupBuyingRepository.findGroupBuyingList(category, limit, offset, sortField, sortWay, title)
                 .stream().map(GroupBuyingResponse::of).collect(Collectors.toList()))
                 .build();
     }
