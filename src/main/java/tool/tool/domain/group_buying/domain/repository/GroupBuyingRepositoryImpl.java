@@ -20,14 +20,15 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<GroupBuying> findGroupBuyingList(String category, int limit, int offset, String field, String sortWay, String title) {
+    public List<GroupBuying> findGroupBuyingList(String category, int limit, int offset, String field, String sortWay, String title, String status) {
         return jpaQueryFactory
                 .selectFrom(groupBuying)
                 .join(groupBuying.leader, leader)
                 .where(
                         groupBuying.status.eq(Status.ACTIVATED),
                         categoryEq(category),
-                        groupBuying.title.contains(title)
+                        groupBuying.title.contains(title),
+                        groupBuying.status.eq(Status.valueOf(status))
                 )
                 .limit(limit)
                 .offset(offset)
