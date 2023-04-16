@@ -46,6 +46,9 @@ public class GroupBuying extends BaseTimeEntity {
     @Column(name = "until_at")
     private LocalDateTime untilAt;
 
+    @ColumnDefault("0")
+    private int views;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leader_id")
     private Leader leader;
@@ -69,5 +72,9 @@ public class GroupBuying extends BaseTimeEntity {
         this.untilAt = untilAt;
         this.leader = leader;
         this.participants = participants;
+    }
+
+    public void increaseViews() {
+        this.views++;
     }
 }
