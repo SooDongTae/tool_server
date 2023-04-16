@@ -14,6 +14,7 @@ public class GroupBuyingResponse {
     private String imgSrc;
     private int maxPeople;
     private int currentPeople;
+    private int views;
 
     public static GroupBuyingResponse of(GroupBuying groupBuying) {
         return GroupBuyingResponse.builder()
@@ -24,6 +25,7 @@ public class GroupBuyingResponse {
                 .imgSrc(groupBuying.getImgSrc())
                 .maxPeople(groupBuying.getMaxPeople())
                 .currentPeople(groupBuying.getCurrentPeople())
+                .views(groupBuying.getViews())
                 .build();
     }
 
