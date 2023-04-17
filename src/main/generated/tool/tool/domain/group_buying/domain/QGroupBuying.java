@@ -54,6 +54,8 @@ public class QGroupBuying extends EntityPathBase<GroupBuying> {
 
     public final DateTimePath<java.time.LocalDateTime> untilAt = createDateTime("untilAt", java.time.LocalDateTime.class);
 
+    public final NumberPath<Integer> views = createNumber("views", Integer.class);
+
     public QGroupBuying(String variable) {
         this(GroupBuying.class, forVariable(variable), INITS);
     }
