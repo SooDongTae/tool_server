@@ -54,6 +54,14 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
                 return new OrderSpecifier<>(Order.ASC, groupBuying.createdAt);
             }
         }
+        else if(field.equals("views")) {
+            if(sortWay.equals("desc")) {
+                return new OrderSpecifier<>(Order.DESC, groupBuying.views);
+            }
+            else if(sortWay.equals("asc")) {
+                return new OrderSpecifier<>(Order.ASC, groupBuying.views);
+            }
+        }
         return null;
     }
 }
