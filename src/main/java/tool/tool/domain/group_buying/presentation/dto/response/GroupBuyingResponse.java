@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 public class GroupBuyingResponse {
@@ -15,6 +17,7 @@ public class GroupBuyingResponse {
     private int maxPeople;
     private int currentPeople;
     private int views;
+    private LocalDateTime untilAt;
 
     public static GroupBuyingResponse of(GroupBuying groupBuying) {
         return GroupBuyingResponse.builder()
@@ -26,6 +29,7 @@ public class GroupBuyingResponse {
                 .maxPeople(groupBuying.getMaxPeople())
                 .currentPeople(groupBuying.getCurrentPeople())
                 .views(groupBuying.getViews())
+                .untilAt(groupBuying.getUntilAt())
                 .build();
     }
 
