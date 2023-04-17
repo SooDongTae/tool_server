@@ -8,6 +8,7 @@ import tool.tool.domain.group_buying.domain.repository.GroupBuyingRepository;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
 import tool.tool.domain.group_buying.exception.GroupBuyingNotFound;
+import tool.tool.domain.group_buying.exception.PeopleMaxException;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.User;
@@ -44,5 +45,11 @@ public class GroupBuyingFacade {
     public GroupBuying findGroupBuyingById(Long id) {
         return groupBuyingRepository.findById(id)
                 .orElseThrow(() -> GroupBuyingNotFound.EXCEPTION);
+    }
+
+    public void canParticipate(GroupBuying groupBuying) {
+        if(groupBuying.getCurrentPeople() >= groupBuying.getMaxPeople()) {
+            throw PeopleMaxException.EXCEPTION;
+        }
     }
 }
