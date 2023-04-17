@@ -30,7 +30,6 @@ public class GroupBuyingFacade {
                 GroupBuying.builder()
                         .title(request.getTitle())
                         .maxPeople(request.getMaxPeople())
-                        .currentPeople(0)
                         .content(request.getContent())
                         .cost(request.getCost())
                         .category(Category.valueOf(request.getCategory()))

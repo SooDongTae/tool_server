@@ -32,6 +32,7 @@ public class GroupBuying extends BaseTimeEntity {
     private int maxPeople;
 
     @Column(name = "current_people")
+    @ColumnDefault("0")
     private int currentPeople;
 
     @Enumerated(EnumType.STRING)
