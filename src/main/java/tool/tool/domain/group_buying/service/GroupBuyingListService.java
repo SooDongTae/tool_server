@@ -3,7 +3,6 @@ package tool.tool.domain.group_buying.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import tool.tool.domain.group_buying.domain.repository.GroupBuyingRepository;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingListResponse;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingResponse;
