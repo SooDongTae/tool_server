@@ -13,9 +13,11 @@ public class LeaderFacade {
     private final LeaderRepository leaderRepository;
 
     @Transactional
-    public Leader saveLeader(User user) {
+    public Leader saveLeader(User user, String bank, String account) {
         return leaderRepository.save(Leader.builder()
                 .user(user)
+                .accountBank(bank)
+                .accountNum(account)
                 .build());
     }
 }

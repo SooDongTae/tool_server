@@ -23,7 +23,7 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
     public List<GroupBuying> findGroupBuyingList(String category, int limit, int offset, String field, String sortWay, String title, String status) {
         return jpaQueryFactory
                 .selectFrom(groupBuying)
-                .join(groupBuying.leader, leader)
+                .join(groupBuying.leader, leader).fetchJoin()
                 .where(
                         groupBuying.status.eq(Status.ACTIVATED),
                         categoryEq(category),

@@ -22,7 +22,7 @@ public class GroupBuyingCreateService {
     @Transactional
     public void execute(GroupBuyingCreateRequest request) {
         User user = userFacade.findUserById(request.getLeaderId());
-        Leader leader = leaderFacade.saveLeader(user);
+        Leader leader = leaderFacade.saveLeader(user, request.getBank(), request.getAccount());
         GroupBuying groupBuying = groupBuyingFacade.saveGroupBuying(request, leader);
         leader.setGroupBuying(groupBuying);
     }
