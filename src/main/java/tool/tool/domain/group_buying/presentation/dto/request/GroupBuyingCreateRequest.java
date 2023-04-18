@@ -30,4 +30,10 @@ public class GroupBuyingCreateRequest {
     @Min(0)
     private int cost;
 
+    @NotBlank
+    private String bank;
+
+    @NotBlank
+    private String account;
+
 }
