@@ -25,7 +25,6 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
                 .selectFrom(groupBuying)
                 .join(groupBuying.leader, leader).fetchJoin()
                 .where(
-                        groupBuying.status.eq(Status.ACTIVATED),
                         categoryEq(category),
                         groupBuying.title.contains(title),
                         groupBuying.status.eq(Status.valueOf(status))
