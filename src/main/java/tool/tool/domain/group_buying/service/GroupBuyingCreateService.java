@@ -8,7 +8,6 @@ import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.User;
-import tool.tool.domain.user.domain.repository.UserRepository;
 import tool.tool.domain.user.facade.LeaderFacade;
 import tool.tool.domain.user.facade.UserFacade;
 
