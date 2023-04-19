@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
+import tool.tool.domain.user.domain.Leader;
 
 import java.util.List;
 
@@ -25,7 +26,6 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
                 .selectFrom(groupBuying)
                 .join(groupBuying.leader, leader).fetchJoin()
                 .where(
-                        groupBuying.status.eq(Status.ACTIVATED),
                         categoryEq(category),
                         groupBuying.title.contains(title),
                         groupBuying.status.eq(Status.valueOf(status))
@@ -37,6 +37,15 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
                 )
                 .fetch();
     }
+
+    @Override
+    public List<GroupBuying> findGroupBuyingListByLeader(List<Leader> leaders) {
+        return jpaQueryFactory
+                .selectFrom(groupBuying)
+                .where(groupBuying.leader.in(leaders))
+                .fetch();
+    }
+
 
     private BooleanExpression categoryEq(String category) {
         if(category.equals("all")) {

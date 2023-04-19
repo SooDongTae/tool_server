@@ -11,12 +11,11 @@ import tool.tool.domain.group_buying.exception.GroupBuyingNotFound;
 import tool.tool.domain.group_buying.exception.PeopleMaxException;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.user.domain.Leader;
-import tool.tool.domain.user.domain.User;
-import tool.tool.domain.user.domain.repository.LeaderRepository;
 import tool.tool.domain.user.domain.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -52,4 +51,5 @@ public class GroupBuyingFacade {
             throw PeopleMaxException.EXCEPTION;
         }
     }
+
 }
