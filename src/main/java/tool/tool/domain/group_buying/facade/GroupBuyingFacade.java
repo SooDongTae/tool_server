@@ -11,10 +11,12 @@ import tool.tool.domain.group_buying.exception.GroupBuyingNotFound;
 import tool.tool.domain.group_buying.exception.PeopleMaxException;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.user.domain.Leader;
+import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -50,6 +52,22 @@ public class GroupBuyingFacade {
         if(groupBuying.getCurrentPeople() >= groupBuying.getMaxPeople()) {
             throw PeopleMaxException.EXCEPTION;
         }
+    }
+
+    public List<GroupBuying> getGroupBuyingByLeader(List<Leader> leaders) {
+        List<GroupBuying> groupBuyingList = new ArrayList<>();
+        for(Leader l : leaders) {
+            groupBuyingList.add(l.getGroupBuying());
+        }
+        return groupBuyingList;
+    }
+
+    public List<GroupBuying> getGroupBuyingByParticipant(List<Participant> participants) {
+        List<GroupBuying> groupBuyingList = new ArrayList<>();
+        for(Participant p : participants) {
+            groupBuyingList.add(p.getGroupBuying());
+        }
+        return groupBuyingList;
     }
 
 }

@@ -2,6 +2,7 @@ package tool.tool.domain.user.facade;
 
 import leehj050211.bsmOauth.dto.resource.BsmUserResource;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.user.domain.User;
@@ -9,6 +10,7 @@ import tool.tool.domain.user.domain.repository.UserRepository;
 import tool.tool.domain.user.domain.type.Authority;
 import tool.tool.domain.user.domain.type.StuNumber;
 import tool.tool.domain.user.exception.UserNotFoundException;
+import tool.tool.global.security.jwt.auth.AuthDetails;
 
 @Component
 @RequiredArgsConstructor
@@ -34,5 +36,10 @@ public class UserFacade {
                 .authority(Authority.ROLE_USER)
                 .build()
         );
+    }
+
+    public User getCurrentUser() {
+        AuthDetails auth = (AuthDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return auth.getUser();
     }
 }

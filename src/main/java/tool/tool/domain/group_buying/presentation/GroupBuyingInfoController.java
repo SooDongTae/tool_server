@@ -6,6 +6,7 @@ import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingListRe
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingResponse;
 import tool.tool.domain.group_buying.service.GroupBuyingDetailService;
 import tool.tool.domain.group_buying.service.GroupBuyingListService;
+import tool.tool.domain.group_buying.service.JoinedGroupBuyingListService;
 import tool.tool.domain.group_buying.service.MyGroupBuyingListService;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ public class GroupBuyingInfoController {
     private final GroupBuyingListService groupBuyingListService;
     private final GroupBuyingDetailService groupBuyingDetailService;
     private final MyGroupBuyingListService myGroupBuyingListService;
+    private final JoinedGroupBuyingListService joinedGroupBuyingListService;
 
     @GetMapping("/list")
     public GroupBuyingListResponse getGroupBuyingList(
@@ -37,9 +39,14 @@ public class GroupBuyingInfoController {
         return groupBuyingDetailService.execute(id);
     }
 
-    @GetMapping("/myGroupBuying/{id}")
-    public GroupBuyingListResponse getMyGroupBuying(@PathVariable Long id) {
-        return myGroupBuyingListService.execute(id);
+    @GetMapping("/myGroupBuying")
+    public GroupBuyingListResponse getMyGroupBuying() {
+        return myGroupBuyingListService.execute();
+    }
+
+    @GetMapping("/joinedGroupBuying")
+    public GroupBuyingListResponse getJoinedGroupBuying() {
+        return joinedGroupBuyingListService.execute();
     }
 
 }
