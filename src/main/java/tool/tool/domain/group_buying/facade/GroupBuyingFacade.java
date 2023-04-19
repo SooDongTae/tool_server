@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -55,19 +56,11 @@ public class GroupBuyingFacade {
     }
 
     public List<GroupBuying> getGroupBuyingByLeader(List<Leader> leaders) {
-        List<GroupBuying> groupBuyingList = new ArrayList<>();
-        for(Leader l : leaders) {
-            groupBuyingList.add(l.getGroupBuying());
-        }
-        return groupBuyingList;
+        return leaders.stream().map(Leader::getGroupBuying).collect(Collectors.toList());
     }
 
     public List<GroupBuying> getGroupBuyingByParticipant(List<Participant> participants) {
-        List<GroupBuying> groupBuyingList = new ArrayList<>();
-        for(Participant p : participants) {
-            groupBuyingList.add(p.getGroupBuying());
-        }
-        return groupBuyingList;
+        return participants.stream().map(Participant::getGroupBuying).collect(Collectors.toList());
     }
 
 }
