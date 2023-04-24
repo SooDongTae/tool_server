@@ -88,4 +88,8 @@ public class GroupBuying extends BaseTimeEntity {
     public void increaseViews() {
         this.views++;
     }
+
+    public void updateImg(String fileName) {
+        this.imgSrc = "http://localhost:8080/api/image/" + fileName;
+    }
 }

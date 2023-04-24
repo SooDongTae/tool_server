@@ -10,6 +10,8 @@ import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateR
 import tool.tool.domain.group_buying.service.GroupBuyingCreateService;
 import tool.tool.domain.group_buying.service.GroupBuyingUpdateService;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/groupBuying")
 @RequiredArgsConstructor
@@ -23,8 +25,8 @@ public class GroupBuyingCreateOrUpdateController {
         groupBuyingCreateService.execute(request);
     }
 
-    @PutMapping("/{:id}")
-    public void updateGroupBuying(@PathVariable Long id, @RequestPart GroupBuyingUpdateRequest request, @RequestPart(required = false) MultipartFile file){
+    @PutMapping("/{id}")
+    public void updateGroupBuying(@PathVariable Long id, @RequestPart GroupBuyingUpdateRequest request, @RequestPart(required = false) MultipartFile file) throws IOException {
         groupBuyingUpdateService.execute(id, request, file);
     }
 }
