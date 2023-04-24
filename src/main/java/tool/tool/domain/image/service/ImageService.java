@@ -32,6 +32,6 @@ public class ImageService {
         } catch (IOException e) {
             throw new IOException("can not save file", e);
         }
-        return file_.getPath();
+        return file_.getName();
     }
 }

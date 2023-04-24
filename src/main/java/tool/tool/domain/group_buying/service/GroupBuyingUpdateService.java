@@ -2,6 +2,7 @@ package tool.tool.domain.group_buying.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
@@ -17,6 +18,7 @@ public class GroupBuyingUpdateService {
     private final GroupBuyingFacade groupBuyingFacade;
     private final ImageService imageService;
 
+    @Transactional
     public void execute(Long id, GroupBuyingUpdateRequest request, MultipartFile file) throws IOException {
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(id);
         groupBuying.update(request);
