@@ -8,7 +8,6 @@ import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.User;
-import tool.tool.domain.user.domain.repository.UserRepository;
 import tool.tool.domain.user.facade.LeaderFacade;
 import tool.tool.domain.user.facade.UserFacade;
 
@@ -22,7 +21,7 @@ public class GroupBuyingCreateService {
     @Transactional
     public void execute(GroupBuyingCreateRequest request) {
         User user = userFacade.findUserById(request.getLeaderId());
-        Leader leader = leaderFacade.saveLeader(user);
+        Leader leader = leaderFacade.saveLeader(user, request.getBank(), request.getAccount());
         GroupBuying groupBuying = groupBuyingFacade.saveGroupBuying(request, leader);
         leader.setGroupBuying(groupBuying);
     }

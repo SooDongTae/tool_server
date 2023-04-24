@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import tool.tool.domain.auth.domain.RefreshToken;
 import tool.tool.domain.auth.domain.Repository.RefreshTokenRepository;
 import tool.tool.global.security.jwt.config.JwtProperties;
+import tool.tool.global.security.jwt.exception.ExpiredTokenException;
+import tool.tool.global.security.jwt.exception.InvalidTokenException;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
@@ -68,12 +70,18 @@ public class JwtTokenProvider {
     }
 
     public String getEmail(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSecretKey(jwtProperties.getSecretKey()))
-                .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .get("email", String.class);
+        try {
+            return Jwts.parserBuilder()
+                    .setSigningKey(getSecretKey(jwtProperties.getSecretKey()))
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .get("email", String.class);
+        } catch (ExpiredJwtException e) {
+            throw ExpiredTokenException.EXCEPTION;
+        } catch (Exception e) {
+            throw InvalidTokenException.EXCEPTION;
+        }
     }
 
     public LocalDateTime getExpiredAt() {

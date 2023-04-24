@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
+import org.hibernate.annotations.ColumnDefault;
+import tool.tool.domain.group_buying.domain.type.Category;
+import tool.tool.domain.group_buying.domain.type.Status;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.User;
@@ -27,13 +30,29 @@ public class GroupBuying extends BaseTimeEntity {
 
     private int cost;
 
+    @Column(name = "max_people")
+    private int maxPeople;
+
+    @Column(name = "current_people")
+    @ColumnDefault("0")
+    private int currentPeople;
+
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @Column(name = "img_src")
     private String imgSrc;
 
     @Column(name = "until_at")
     private LocalDateTime untilAt;
 
-    @OneToOne
+    @ColumnDefault("0")
+    private int views;
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leader_id")
     private Leader leader;
 
@@ -43,22 +62,30 @@ public class GroupBuying extends BaseTimeEntity {
     protected GroupBuying() {}
 
     @Builder
-    public GroupBuying(Long id, String title, String content, int cost, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
+    public GroupBuying(Long id, String title, String content, int cost, int maxPeople, int currentPeople, Category category, Status status, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.cost = cost;
+        this.maxPeople = maxPeople;
+        this.currentPeople = currentPeople;
+        this.category = category;
+        this.status = status;
         this.imgSrc = imgSrc;
         this.untilAt = untilAt;
         this.leader = leader;
         this.participants = participants;
     }
-
+    
     public void update(GroupBuyingUpdateRequest request) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         this.title = request.getTitle();
         this.content = request.getContent();
         this.cost = request.getCost();
         this.untilAt = LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter);
+    }
+    
+    public void increaseViews() {
+        this.views++;
     }
 }
