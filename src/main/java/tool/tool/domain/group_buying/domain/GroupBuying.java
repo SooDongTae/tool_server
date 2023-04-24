@@ -3,12 +3,14 @@ package tool.tool.domain.group_buying.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -50,5 +52,13 @@ public class GroupBuying extends BaseTimeEntity {
         this.untilAt = untilAt;
         this.leader = leader;
         this.participants = participants;
+    }
+
+    public void update(GroupBuyingUpdateRequest request) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        this.title = request.getTitle();
+        this.content = request.getContent();
+        this.cost = request.getCost();
+        this.untilAt = LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter);
     }
 }
