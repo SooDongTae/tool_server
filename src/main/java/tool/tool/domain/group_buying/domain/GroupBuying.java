@@ -59,6 +59,9 @@ public class GroupBuying extends BaseTimeEntity {
     @OneToMany(mappedBy = "groupBuying")
     private List<Participant> participants;
 
+    @OneToMany(mappedBy = "groupBuying")
+    private List<Question> questions;
+
     protected GroupBuying() {}
 
     @Builder
