@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import leehj050211.bsmOauth.dto.resource.BsmUserResource;
 import lombok.Builder;
 import lombok.Getter;
-import tool.tool.domain.group_buying.domain.Question;
+import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.user.domain.type.Authority;
 import tool.tool.domain.user.domain.type.StuNumber;
 import tool.tool.global.entity.BaseTimeEntity;

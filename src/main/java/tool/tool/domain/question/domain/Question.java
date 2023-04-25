@@ -1,7 +1,8 @@
-package tool.tool.domain.group_buying.domain;
+package tool.tool.domain.question.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 

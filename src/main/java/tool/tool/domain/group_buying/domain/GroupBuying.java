@@ -7,9 +7,9 @@ import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateR
 import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
+import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.Participant;
-import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
 import java.time.LocalDateTime;
