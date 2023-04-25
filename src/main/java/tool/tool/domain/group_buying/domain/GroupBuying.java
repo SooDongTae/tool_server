@@ -80,7 +80,9 @@ public class GroupBuying extends BaseTimeEntity {
     public void update(GroupBuyingUpdateRequest request) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         this.title = request.getTitle();
+        this.maxPeople = request.getMaxPeople();
         this.content = request.getContent();
+        this.category = Category.valueOf(request.getCategory());
         this.cost = request.getCost();
         this.untilAt = LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter);
     }
