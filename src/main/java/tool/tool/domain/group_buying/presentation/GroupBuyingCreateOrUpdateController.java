@@ -21,8 +21,8 @@ public class GroupBuyingCreateOrUpdateController {
     private final GroupBuyingUpdateService groupBuyingUpdateService;
 
     @PostMapping("/create")
-    public void createGroupBuying(@RequestPart GroupBuyingCreateRequest request) {
-        groupBuyingCreateService.execute(request);
+    public void createGroupBuying(@RequestPart GroupBuyingCreateRequest request, @RequestPart MultipartFile file) throws IOException {
+        groupBuyingCreateService.execute(request, file);
     }
 
     @PutMapping("/{id}")
