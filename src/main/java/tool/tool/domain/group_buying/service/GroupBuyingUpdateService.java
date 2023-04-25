@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
-import tool.tool.domain.image.service.ImageService;
+import tool.tool.domain.image.service.ImageSaveService;
 
 import java.io.IOException;
 
@@ -16,14 +16,14 @@ import java.io.IOException;
 public class GroupBuyingUpdateService {
 
     private final GroupBuyingFacade groupBuyingFacade;
-    private final ImageService imageService;
+    private final ImageSaveService imageService;
 
     @Transactional
     public void execute(Long id, GroupBuyingUpdateRequest request, MultipartFile file) throws IOException {
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(id);
         groupBuying.update(request);
         if(!file.isEmpty()) {
-            String fileName = imageService.saveFile(file);
+            String fileName = imageService.execute(file);
             groupBuying.updateImg(fileName);
         }
     }

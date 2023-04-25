@@ -11,8 +11,18 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
-public class ImageService {
+public class ImageSaveService {
     private final ImageConfig imageConfig;
+
+    public String execute(MultipartFile file) throws IOException {
+        File file_ = new File(imageConfig.getPath(), getRandomStr());
+        try {
+            file.transferTo(file_);
+        } catch (IOException e) {
+            throw new IOException("can not save file", e);
+        }
+        return file_.getName();
+    }
 
     private static String getRandomStr(){
         int leftLimit = 97;
@@ -25,13 +35,4 @@ public class ImageService {
                 .toString();
     }
 
-    public String saveFile(MultipartFile file) throws IOException {
-        File file_ = new File(imageConfig.getPath(), getRandomStr());
-        try {
-            file.transferTo(file_);
-        } catch (IOException e) {
-            throw new IOException("can not save file", e);
-        }
-        return file_.getName();
-    }
 }
