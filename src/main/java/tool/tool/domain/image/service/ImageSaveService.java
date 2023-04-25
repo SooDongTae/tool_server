@@ -7,6 +7,7 @@ import tool.tool.global.config.ImageConfig;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -15,7 +16,8 @@ public class ImageSaveService {
     private final ImageConfig imageConfig;
 
     public String execute(MultipartFile file) throws IOException {
-        File file_ = new File(imageConfig.getPath(), getRandomStr());
+        String type = Objects.requireNonNull(file.getContentType()).split("/")[1];
+        File file_ = new File(imageConfig.getPath(), getRandomStr() + "." + type);
         try {
             file.transferTo(file_);
         } catch (IOException e) {
