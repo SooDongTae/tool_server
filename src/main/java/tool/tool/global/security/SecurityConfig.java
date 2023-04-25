@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/groupBuying/**").hasRole(Authority.ROLE_USER.getRole())
                 .requestMatchers("/api/participant/**").hasRole(Authority.ROLE_USER.getRole())
+                .requestMatchers("/api/image/**").permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, authDetailsService), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new ExceptionFilter(mapper), JwtAuthenticationFilter.class);
