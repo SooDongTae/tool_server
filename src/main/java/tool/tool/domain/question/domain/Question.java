@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.domain.GroupBuying;
+import tool.tool.domain.question.presentaion.dto.request.QuestionUpdateRequest;
 import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
@@ -53,5 +54,9 @@ public class Question extends BaseTimeEntity {
         }
         this.user = user;
         user.getQuestions().add(this);
+    }
+
+    public void update(QuestionUpdateRequest request) {
+        this.content = request.getContent();
     }
 }

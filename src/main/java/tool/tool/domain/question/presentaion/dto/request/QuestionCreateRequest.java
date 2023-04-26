@@ -5,4 +5,5 @@ import lombok.Getter;
 @Getter
 public class QuestionCreateRequest {
     private String content;
+    private boolean isSecret;
 }
