@@ -1,6 +1,7 @@
 package tool.tool.domain.question.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.user.domain.User;
@@ -26,6 +27,17 @@ public class Question extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    protected Question() {}
+
+    @Builder
+    public Question(Long id, String content, Boolean isSecret, GroupBuying groupBuying, User user) {
+        this.id = id;
+        this.content = content;
+        this.isSecret = isSecret;
+        this.groupBuying = groupBuying;
+        this.user = user;
+    }
 
     public void setGroupBuying(GroupBuying groupBuying) {
         if(this.groupBuying != null) {

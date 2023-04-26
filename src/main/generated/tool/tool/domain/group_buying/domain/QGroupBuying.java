@@ -48,6 +48,8 @@ public class QGroupBuying extends EntityPathBase<GroupBuying> {
 
     public final ListPath<tool.tool.domain.user.domain.Participant, tool.tool.domain.user.domain.QParticipant> participants = this.<tool.tool.domain.user.domain.Participant, tool.tool.domain.user.domain.QParticipant>createList("participants", tool.tool.domain.user.domain.Participant.class, tool.tool.domain.user.domain.QParticipant.class, PathInits.DIRECT2);
 
+    public final ListPath<tool.tool.domain.question.domain.Question, tool.tool.domain.question.domain.QQuestion> questions = this.<tool.tool.domain.question.domain.Question, tool.tool.domain.question.domain.QQuestion>createList("questions", tool.tool.domain.question.domain.Question.class, tool.tool.domain.question.domain.QQuestion.class, PathInits.DIRECT2);
+
     public final EnumPath<tool.tool.domain.group_buying.domain.type.Status> status = createEnum("status", tool.tool.domain.group_buying.domain.type.Status.class);
 
     public final StringPath title = createString("title");
