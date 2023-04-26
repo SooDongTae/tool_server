@@ -38,7 +38,6 @@ public class UserFacade {
         );
     }
 
-    @Transactional
     public User getCurrentUser() {
         AuthDetails auth = (AuthDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return auth.getUser();
