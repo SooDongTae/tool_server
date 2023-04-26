@@ -25,11 +25,12 @@ public class GroupBuyingCreateService {
 
     @Transactional
     public void execute(GroupBuyingCreateRequest request, MultipartFile file) throws IOException {
-        User user = userFacade.findUserById(request.getLeaderId());
+        User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
         Leader leader = leaderFacade.saveLeader(user, request.getBank(), request.getAccount());
         GroupBuying groupBuying = groupBuyingFacade.saveGroupBuying(request, leader);
         String imgSrc = imageService.execute(file);
         groupBuying.updateImg(imgSrc);
         leader.setGroupBuying(groupBuying);
+        leader.setUser(user);
     }
 }

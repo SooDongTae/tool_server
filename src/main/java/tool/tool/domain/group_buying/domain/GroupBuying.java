@@ -7,9 +7,9 @@ import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateR
 import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
+import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.Participant;
-import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
 import java.time.LocalDateTime;
@@ -59,6 +59,9 @@ public class GroupBuying extends BaseTimeEntity {
     @OneToMany(mappedBy = "groupBuying")
     private List<Participant> participants;
 
+    @OneToMany(mappedBy = "groupBuying")
+    private List<Question> questions;
+
     protected GroupBuying() {}
 
     @Builder
@@ -80,7 +83,9 @@ public class GroupBuying extends BaseTimeEntity {
     public void update(GroupBuyingUpdateRequest request) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         this.title = request.getTitle();
+        this.maxPeople = request.getMaxPeople();
         this.content = request.getContent();
+        this.category = Category.valueOf(request.getCategory());
         this.cost = request.getCost();
         this.untilAt = LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter);
     }

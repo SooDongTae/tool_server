@@ -7,9 +7,6 @@ import java.time.LocalDateTime;
 
 @Getter
 public class GroupBuyingCreateRequest {
-    @NotNull
-    @Min(0)
-    private Long leaderId;
 
     @NotBlank
     @Size(min = 1, max = 20)
