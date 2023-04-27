@@ -8,6 +8,8 @@ import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
 import tool.tool.domain.image.service.ImageSaveService;
+import tool.tool.domain.user.domain.User;
+import tool.tool.domain.user.facade.UserFacade;
 
 import java.io.IOException;
 
@@ -17,10 +19,14 @@ public class GroupBuyingUpdateService {
 
     private final GroupBuyingFacade groupBuyingFacade;
     private final ImageSaveService imageService;
+    private final UserFacade userFacade;
 
     @Transactional
     public void execute(Long id, GroupBuyingUpdateRequest request, MultipartFile file) throws IOException {
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(id);
+        User currentUser = userFacade.getCurrentUser();
+        User writer = groupBuying.getLeader().getUser();
+        userFacade.checkUser(currentUser, writer);
         groupBuying.update(request);
         if(!file.isEmpty()) {
             String fileName = imageService.execute(file);
