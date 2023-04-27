@@ -2,6 +2,7 @@ package tool.tool.domain.group_buying.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.repository.GroupBuyingRepository;
 import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
@@ -21,8 +22,9 @@ public class JoinedGroupBuyingListService {
     private final UserFacade userFacade;
     private final GroupBuyingFacade groupBuyingFacade;
 
+    @Transactional
     public GroupBuyingListResponse execute() {
-        User user = userFacade.getCurrentUser();
+        User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
         List<GroupBuying> groupBuyingList = groupBuyingFacade.getGroupBuyingByParticipant(user.getParticipants());
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
