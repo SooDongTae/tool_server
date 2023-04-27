@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 public class JoinedGroupBuyingListService {
 
     private final UserFacade userFacade;
-    private final GroupBuyingRepository groupBuyingRepository;
     private final GroupBuyingFacade groupBuyingFacade;
 
     public GroupBuyingListResponse execute() {

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import tool.tool.domain.question.exception.DifferentUserException;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.UserRepository;
 import tool.tool.domain.user.domain.type.Authority;
@@ -16,6 +17,7 @@ import tool.tool.global.security.jwt.auth.AuthDetails;
 @RequiredArgsConstructor
 public class UserFacade {
     private final UserRepository userRepository;
+
     @Transactional
     public User findUserById(Long id) {
         return userRepository.findById(id)
@@ -41,5 +43,11 @@ public class UserFacade {
     public User getCurrentUser() {
         AuthDetails auth = (AuthDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return auth.getUser();
+    }
+
+    public void checkUser(User currentUser, User writer) {
+        if(!currentUser.getId().equals(writer.getId())) {
+            throw DifferentUserException.EXCEPTION;
+        }
     }
 }

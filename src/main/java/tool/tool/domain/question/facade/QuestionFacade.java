@@ -46,10 +46,6 @@ public class QuestionFacade {
         questionRepository.delete(question);
     }
 
-    public void checkUser(User currentUser, User writer) {
-        if(!currentUser.getId().equals(writer.getId())) {
-            throw DifferentUserException.EXCEPTION;
-        }
-    }
+
 
 }

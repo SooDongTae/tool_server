@@ -21,7 +21,7 @@ public class QuestionUpdateService {
         Question question = questionFacade.findQuestionById(id);
         User currentUser = userFacade.getCurrentUser();
         User writer = question.getUser();
-        questionFacade.checkUser(currentUser, writer);
+        userFacade.checkUser(currentUser, writer);
         question.update(request);
     }
 
