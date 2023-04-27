@@ -41,4 +41,8 @@ public class QuestionFacade {
         return questionRepository.findByGroupBuying(groupBuying);
     }
 
+    public void deleteQuestion(Question question) {
+        questionRepository.delete(question);
+    }
+
 }
