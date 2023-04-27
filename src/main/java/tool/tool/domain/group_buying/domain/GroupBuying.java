@@ -94,6 +94,10 @@ public class GroupBuying extends BaseTimeEntity {
         this.views++;
     }
 
+    public void increaseCurrentPeople() {
+        this.currentPeople++;
+    }
+
     public void updateImg(String fileName) {
         this.imgSrc = "http://localhost:8080/api/image/" + fileName;
     }

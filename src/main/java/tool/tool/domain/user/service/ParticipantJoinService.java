@@ -20,9 +20,9 @@ public class ParticipantJoinService {
     private final GroupBuyingFacade groupBuyingFacade;
     @Transactional
     public void execute(JoinGroupBuyingRequest request) {
-        User user = userFacade.findUserById(request.getUserId());
+        User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(request.getGroupBuyingId());
-
         participantFacade.saveParticipant(user, groupBuying);
+        groupBuying.increaseCurrentPeople();
     }
 }
