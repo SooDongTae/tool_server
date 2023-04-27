@@ -19,14 +19,9 @@ public class QuestionDeleteService {
         Question question = questionFacade.findQuestionById(id);
         User currentUser = userFacade.getCurrentUser();
         User writer = question.getUser();
-        checkUser(currentUser, writer);
+        questionFacade.checkUser(currentUser, writer);
         questionFacade.deleteQuestion(question);
     }
 
-    private void checkUser(User currentUser, User writer) {
-        if(!currentUser.getId().equals(writer.getId())) {
-            throw DifferentUserException.EXCEPTION;
-        }
-    }
 
 }
