@@ -4,6 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class JoinGroupBuyingRequest {
-    private Long userId;
     private Long groupBuyingId;
 }
