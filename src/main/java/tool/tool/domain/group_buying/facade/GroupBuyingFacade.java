@@ -55,10 +55,12 @@ public class GroupBuyingFacade {
         }
     }
 
+    @Transactional
     public List<GroupBuying> getGroupBuyingByLeader(List<Leader> leaders) {
         return leaders.stream().map(Leader::getGroupBuying).collect(Collectors.toList());
     }
 
+    @Transactional
     public List<GroupBuying> getGroupBuyingByParticipant(List<Participant> participants) {
         return participants.stream().map(Participant::getGroupBuying).collect(Collectors.toList());
     }
