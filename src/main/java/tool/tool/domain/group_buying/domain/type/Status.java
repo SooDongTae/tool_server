@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 public enum Status {
     ACTIVATED("activated"),
     CANCELED("canceled"),
-    EXPIRED("expired");
+    EXPIRED("expired"),
+    COMPLETED("completed");
 
     private final String name;
 }
