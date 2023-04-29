@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import tool.tool.domain.question.exception.DifferentUserException;
+import tool.tool.domain.user.exception.DifferentUserException;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.UserRepository;
 import tool.tool.domain.user.domain.type.Authority;
