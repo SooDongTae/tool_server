@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.question.domain.repository.QuestionRepository;
-import tool.tool.domain.question.exception.DifferentUserException;
 import tool.tool.domain.question.exception.QuestionNotFound;
 import tool.tool.domain.question.presentaion.dto.request.QuestionCreateRequest;
 import tool.tool.domain.user.domain.User;

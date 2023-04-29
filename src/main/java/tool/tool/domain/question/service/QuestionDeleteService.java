@@ -3,7 +3,6 @@ package tool.tool.domain.question.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tool.tool.domain.question.domain.Question;
-import tool.tool.domain.question.exception.DifferentUserException;
 import tool.tool.domain.question.facade.QuestionFacade;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.facade.UserFacade;
