@@ -51,4 +51,8 @@ public class Answer extends BaseTimeEntity {
         this.user = user;
         user.getAnswerList().add(this);
     }
+
+    public void update(String content) {
+        this.content = content;
+    }
 }
