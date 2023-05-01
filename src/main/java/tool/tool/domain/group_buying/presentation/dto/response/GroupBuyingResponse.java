@@ -19,6 +19,7 @@ public class GroupBuyingResponse {
     private int maxPeople;
     private int currentPeople;
     private int views;
+    private String status;
     private LocalDateTime untilAt;
     private List<ParticipantResponse> participantResponseList;
 
@@ -32,6 +33,7 @@ public class GroupBuyingResponse {
                 .maxPeople(groupBuying.getMaxPeople())
                 .currentPeople(groupBuying.getCurrentPeople())
                 .views(groupBuying.getViews())
+                .status(groupBuying.getStatus().getName())
                 .untilAt(groupBuying.getUntilAt())
                 .participantResponseList(groupBuying.getParticipants().stream().map(ParticipantResponse::of).collect(Collectors.toList()))
                 .build();
