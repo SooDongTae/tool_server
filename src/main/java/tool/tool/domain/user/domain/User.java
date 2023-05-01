@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import leehj050211.bsmOauth.dto.resource.BsmUserResource;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.answer.domain.Answer;
 import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.user.domain.type.Authority;
 import tool.tool.domain.user.domain.type.StuNumber;
@@ -38,6 +39,9 @@ public class User extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "user")
     private List<Question> questions;
+
+    @OneToMany(mappedBy = "user")
+    private List<Answer> answerList;
 
     protected User() {}
 
