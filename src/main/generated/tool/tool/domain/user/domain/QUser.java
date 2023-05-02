@@ -24,6 +24,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final tool.tool.global.entity.QBaseTimeEntity _super = new tool.tool.global.entity.QBaseTimeEntity(this);
 
+    public final ListPath<tool.tool.domain.answer.domain.Answer, tool.tool.domain.answer.domain.QAnswer> answerList = this.<tool.tool.domain.answer.domain.Answer, tool.tool.domain.answer.domain.QAnswer>createList("answerList", tool.tool.domain.answer.domain.Answer.class, tool.tool.domain.answer.domain.QAnswer.class, PathInits.DIRECT2);
+
     public final EnumPath<tool.tool.domain.user.domain.type.Authority> authority = createEnum("authority", tool.tool.domain.user.domain.type.Authority.class);
 
     //inherited
