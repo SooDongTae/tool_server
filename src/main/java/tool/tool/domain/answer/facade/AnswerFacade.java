@@ -29,4 +29,9 @@ public class AnswerFacade {
         return answerRepository.findById(id)
                 .orElseThrow(() -> AnswerNotFound.EXCEPTION);
     }
+
+    @Transactional
+    public void deleteAnswer(Answer answer) {
+        answerRepository.delete(answer);
+    }
 }
