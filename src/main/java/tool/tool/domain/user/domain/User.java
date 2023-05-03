@@ -79,7 +79,10 @@ public class User extends BaseTimeEntity {
     }
 
     public void increaseRatingScore() {
-        if(ratingScore + 1 == 3) {
+        if(this.rating == 1) {
+            return;
+        }
+        if(this.ratingScore + 1 == 3) {
             this.decreaseRating();
             this.ratingScore = 0;
         }
