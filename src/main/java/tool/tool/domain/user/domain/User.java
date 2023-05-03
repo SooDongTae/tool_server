@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import leehj050211.bsmOauth.dto.resource.BsmUserResource;
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.answer.domain.Answer;
 import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.user.domain.type.Authority;
@@ -27,6 +28,14 @@ public class User extends BaseTimeEntity {
 
     @Column(name = "user_email")
     private String email;
+
+    @Column(name = "user_rating")
+    @ColumnDefault("5")
+    private int rating;
+
+    @Column(name = "rating_score")
+    @ColumnDefault("0")
+    private int ratingScore;
 
     @Enumerated(EnumType.STRING)
     private Authority authority;
@@ -63,5 +72,19 @@ public class User extends BaseTimeEntity {
                 .num(resource.getStudent().getStudentNo())
                 .build();
         return this;
+    }
+
+    public void increaseRating() {
+        this.rating++;
+    }
+
+    public void increaseRatingScore() {
+        if(ratingScore + 1 == 3) {
+            this.increaseRating();
+            this.ratingScore = 0;
+        }
+        else {
+            this.ratingScore++;
+        }
     }
 }
