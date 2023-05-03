@@ -1,16 +1,14 @@
 package tool.tool.domain.group_buying.presentation;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
-import tool.tool.domain.group_buying.presentation.dto.request.UpdateStatusRequest;
+import tool.tool.domain.group_buying.service.CancelGroupBuyingService;
 import tool.tool.domain.group_buying.service.GroupBuyingCreateService;
 import tool.tool.domain.group_buying.service.GroupBuyingUpdateService;
-import tool.tool.domain.group_buying.service.UpdateStatusService;
+import tool.tool.domain.group_buying.service.CompleteGroupBuyingService;
 
 import java.io.IOException;
 
@@ -21,7 +19,8 @@ public class GroupBuyingCreateOrUpdateController {
 
     private final GroupBuyingCreateService groupBuyingCreateService;
     private final GroupBuyingUpdateService groupBuyingUpdateService;
-    private final UpdateStatusService updateStatusService;
+    private final CompleteGroupBuyingService completeGroupBuyingService;
+    private final CancelGroupBuyingService cancelGroupBuyingService;
 
     @PostMapping("/create")
     public void createGroupBuying(@RequestPart GroupBuyingCreateRequest request, @RequestPart MultipartFile file) throws IOException {
@@ -33,8 +32,13 @@ public class GroupBuyingCreateOrUpdateController {
         groupBuyingUpdateService.execute(id, request, file);
     }
 
-    @PutMapping("/status/{id}")
-    public void updateStatus(@PathVariable Long id, @RequestBody UpdateStatusRequest request) {
-        updateStatusService.execute(id, request.getStatus());
+    @PutMapping("/complete/{id}")
+    public void completeGroupBuying(@PathVariable Long id) {
+        completeGroupBuyingService.execute(id);
+    }
+
+    @PutMapping("/cancel/{id}")
+    public void cancelGroupBuying(@PathVariable Long id) {
+        cancelGroupBuyingService.execute(id);
     }
 }
