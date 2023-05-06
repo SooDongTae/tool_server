@@ -65,4 +65,11 @@ public class GroupBuyingFacade {
         return participants.stream().map(Participant::getGroupBuying).collect(Collectors.toList());
     }
 
+    @Transactional
+    public void expireGroupBuying(List<GroupBuying> groupBuyingList) {
+        for(GroupBuying i : groupBuyingList) {
+            i.statusUpdate("expired");
+        }
+    }
+
 }
