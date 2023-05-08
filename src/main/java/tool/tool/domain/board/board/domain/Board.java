@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.user.domain.User;
+import tool.tool.global.entity.BaseTimeEntity;
 
 @Entity
 @Getter
-public class Board {
+public class Board extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
