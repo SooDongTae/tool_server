@@ -28,6 +28,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final EnumPath<tool.tool.domain.user.domain.type.Authority> authority = createEnum("authority", tool.tool.domain.user.domain.type.Authority.class);
 
+    public final ListPath<tool.tool.domain.board.board.domain.Board, tool.tool.domain.board.board.domain.QBoard> boardList = this.<tool.tool.domain.board.board.domain.Board, tool.tool.domain.board.board.domain.QBoard>createList("boardList", tool.tool.domain.board.board.domain.Board.class, tool.tool.domain.board.board.domain.QBoard.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
@@ -45,6 +47,10 @@ public class QUser extends EntityPathBase<User> {
     public final ListPath<Participant, QParticipant> participants = this.<Participant, QParticipant>createList("participants", Participant.class, QParticipant.class, PathInits.DIRECT2);
 
     public final ListPath<tool.tool.domain.question.domain.Question, tool.tool.domain.question.domain.QQuestion> questions = this.<tool.tool.domain.question.domain.Question, tool.tool.domain.question.domain.QQuestion>createList("questions", tool.tool.domain.question.domain.Question.class, tool.tool.domain.question.domain.QQuestion.class, PathInits.DIRECT2);
+
+    public final NumberPath<Integer> rating = createNumber("rating", Integer.class);
+
+    public final NumberPath<Integer> ratingScore = createNumber("ratingScore", Integer.class);
 
     public final tool.tool.domain.user.domain.type.QStuNumber stuNumber;
 
