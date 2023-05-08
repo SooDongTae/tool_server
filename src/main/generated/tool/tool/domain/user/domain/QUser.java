@@ -46,6 +46,10 @@ public class QUser extends EntityPathBase<User> {
 
     public final ListPath<tool.tool.domain.question.domain.Question, tool.tool.domain.question.domain.QQuestion> questions = this.<tool.tool.domain.question.domain.Question, tool.tool.domain.question.domain.QQuestion>createList("questions", tool.tool.domain.question.domain.Question.class, tool.tool.domain.question.domain.QQuestion.class, PathInits.DIRECT2);
 
+    public final NumberPath<Integer> rating = createNumber("rating", Integer.class);
+
+    public final NumberPath<Integer> ratingScore = createNumber("ratingScore", Integer.class);
+
     public final tool.tool.domain.user.domain.type.QStuNumber stuNumber;
 
     public QUser(String variable) {
