@@ -28,6 +28,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final EnumPath<tool.tool.domain.user.domain.type.Authority> authority = createEnum("authority", tool.tool.domain.user.domain.type.Authority.class);
 
+    public final ListPath<tool.tool.domain.board.board.domain.Board, tool.tool.domain.board.board.domain.QBoard> boardList = this.<tool.tool.domain.board.board.domain.Board, tool.tool.domain.board.board.domain.QBoard>createList("boardList", tool.tool.domain.board.board.domain.Board.class, tool.tool.domain.board.board.domain.QBoard.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 

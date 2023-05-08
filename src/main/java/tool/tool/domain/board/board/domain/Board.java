@@ -1,6 +1,7 @@
 package tool.tool.domain.board.board.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.user.domain.User;
 
@@ -22,11 +23,21 @@ public class Board {
     @JoinColumn(name = "user_id")
     private User user;
 
+    protected Board() {}
+
     public void setUser(User user) {
         if(this.user != null) {
             user.getBoardList().remove(this);
         }
         this.user = user;
         user.getBoardList().add(this);
+    }
+
+    @Builder
+    public Board(Long id, String title, String content, User user) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.user = user;
     }
 }
