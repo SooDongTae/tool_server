@@ -3,6 +3,7 @@ package tool.tool.domain.board.board.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.board.board.domain.category.BoardCategory;
 import tool.tool.domain.board.board.presentation.dto.request.BoardUpdateRequest;
 import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
@@ -20,6 +21,9 @@ public class Board extends BaseTimeEntity {
 
     @Column(name = "board_content")
     private String content;
+
+    @Enumerated(EnumType.STRING)
+    private BoardCategory category;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
