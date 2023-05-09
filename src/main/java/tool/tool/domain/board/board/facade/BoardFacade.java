@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.board.board.domain.Board;
 import tool.tool.domain.board.board.domain.repository.BoardRepository;
+import tool.tool.domain.board.board.exception.BoardNotFound;
 import tool.tool.domain.board.board.presentation.dto.request.BoardCreateRequest;
 import tool.tool.domain.user.domain.User;
 
@@ -21,6 +22,12 @@ public class BoardFacade {
                 .content(request.getContent())
                 .user(user)
                 .build());
+    }
+
+    @Transactional
+    public Board findBoardById(Long id) {
+        return boardRepository.findById(id)
+                .orElseThrow(() -> BoardNotFound.EXCEPTION);
     }
 
 }

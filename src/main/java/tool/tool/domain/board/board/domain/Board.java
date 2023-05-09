@@ -3,6 +3,7 @@ package tool.tool.domain.board.board.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.board.board.presentation.dto.request.BoardUpdateRequest;
 import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
@@ -40,5 +41,10 @@ public class Board extends BaseTimeEntity {
         this.title = title;
         this.content = content;
         this.user = user;
+    }
+
+    public void update(BoardUpdateRequest request) {
+        this.title = request.getTitle();
+        this.content = request.getContent();
     }
 }
