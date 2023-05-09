@@ -40,15 +40,17 @@ public class Board extends BaseTimeEntity {
     }
 
     @Builder
-    public Board(Long id, String title, String content, User user) {
+    public Board(Long id, String title, String content, BoardCategory category, User user) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.category = category;
         this.user = user;
     }
 
     public void update(BoardUpdateRequest request) {
         this.title = request.getTitle();
         this.content = request.getContent();
+        this.category = BoardCategory.valueOf(request.getCategory());
     }
 }
