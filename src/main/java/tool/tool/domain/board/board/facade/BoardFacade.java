@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.board.board.domain.Board;
+import tool.tool.domain.board.board.domain.category.BoardCategory;
 import tool.tool.domain.board.board.domain.repository.BoardRepository;
 import tool.tool.domain.board.board.exception.BoardNotFound;
 import tool.tool.domain.board.board.presentation.dto.request.BoardCreateRequest;
@@ -20,6 +21,7 @@ public class BoardFacade {
         return boardRepository.save(Board.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
+                .category(BoardCategory.valueOf(request.getCategory()))
                 .user(user)
                 .build());
     }
