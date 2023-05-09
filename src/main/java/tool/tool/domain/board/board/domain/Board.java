@@ -3,6 +3,7 @@ package tool.tool.domain.board.board.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.board.board.domain.category.BoardCategory;
 import tool.tool.domain.board.board.presentation.dto.request.BoardUpdateRequest;
 import tool.tool.domain.user.domain.User;
@@ -24,6 +25,10 @@ public class Board extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private BoardCategory category;
+
+    @Column(name = "board_views")
+    @ColumnDefault("0")
+    private int views;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -52,5 +57,9 @@ public class Board extends BaseTimeEntity {
         this.title = request.getTitle();
         this.content = request.getContent();
         this.category = BoardCategory.valueOf(request.getCategory());
+    }
+
+    public void increaseViews() {
+        this.views++;
     }
 }
