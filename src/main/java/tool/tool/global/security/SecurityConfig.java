@@ -47,6 +47,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/groupBuying/list").permitAll()
                 .requestMatchers("/api/groupBuying/**").hasRole(Authority.ROLE_USER.getRole())
                 .requestMatchers("/api/participant/**").hasRole(Authority.ROLE_USER.getRole())
                 .requestMatchers("/api/question/**").hasRole(Authority.ROLE_USER.getRole())
