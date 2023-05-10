@@ -39,6 +39,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final ListPath<Leader, QLeader> leaders = this.<Leader, QLeader>createList("leaders", Leader.class, QLeader.class, PathInits.DIRECT2);
 
+    public final ListPath<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike> likes = this.<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike>createList("likes", tool.tool.domain.board.like.domain.Like.class, tool.tool.domain.board.like.domain.QLike.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
 
