@@ -14,6 +14,9 @@ public class GroupBuyingResponse {
     private Long id;
     private String title;
     private String content;
+    private int grade;
+    private int class_no;
+    private int student_no;
     private String owner;
     private String imgSrc;
     private int maxPeople;
@@ -29,6 +32,9 @@ public class GroupBuyingResponse {
                 .id(groupBuying.getId())
                 .title(groupBuying.getTitle())
                 .content(groupBuying.getContent())
+                .grade(groupBuying.getLeader().getUser().getStuNumber().getGrade())
+                .class_no(groupBuying.getLeader().getUser().getStuNumber().getBan())
+                .student_no(groupBuying.getLeader().getUser().getStuNumber().getNum())
                 .owner(groupBuying.getLeader().getUser().getName())
                 .imgSrc(groupBuying.getImgSrc())
                 .maxPeople(groupBuying.getMaxPeople())
