@@ -24,6 +24,8 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final tool.tool.global.entity.QBaseTimeEntity _super = new tool.tool.global.entity.QBaseTimeEntity(this);
 
+    public final EnumPath<tool.tool.domain.board.board.domain.category.BoardCategory> category = createEnum("category", tool.tool.domain.board.board.domain.category.BoardCategory.class);
+
     public final StringPath content = createString("content");
 
     //inherited
@@ -37,6 +39,8 @@ public class QBoard extends EntityPathBase<Board> {
     public final StringPath title = createString("title");
 
     public final tool.tool.domain.user.domain.QUser user;
+
+    public final NumberPath<Integer> views = createNumber("views", Integer.class);
 
     public QBoard(String variable) {
         this(Board.class, forVariable(variable), INITS);
