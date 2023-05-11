@@ -70,9 +70,6 @@ public class Board extends BaseTimeEntity {
     }
 
     public int getTotalLikes() {
-        for(Like i : this.likes) {
-            System.out.println(i.getId() + " " + i.getLikeKinds().getKind());
-        }
         return this.likes.stream()
                 .filter(chunk -> chunk.getLikeKinds().getKind().equals("like"))
                 .toList()
