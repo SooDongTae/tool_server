@@ -7,7 +7,7 @@ import tool.tool.domain.board.board.domain.Board;
 import tool.tool.domain.board.like.domain.type.LikeKinds;
 import tool.tool.domain.user.domain.User;
 
-@Entity
+@Entity(name = "tbl_like")
 @Getter
 public class Like {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,25 +30,9 @@ public class Like {
     @Builder
     public Like(Long id, Board board, User user, LikeKinds likeKinds) {
         this.id = id;
-        this.setBoard(board);
-        this.setUser(user);
-        this.likeKinds = likeKinds;
-    }
-
-    public void setBoard(Board board) {
-        if(this.board != null) {
-            board.getLikes().remove(this);
-        }
         this.board = board;
-        board.getLikes().add(this);
-    }
-
-    public void setUser(User user) {
-        if(this.user != null) {
-            user.getLikes().remove(this);
-        }
         this.user = user;
-        user.getLikes().add(this);
+        this.likeKinds = likeKinds;
     }
 
     public Like update(String kinds) {

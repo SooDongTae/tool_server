@@ -26,6 +26,8 @@ public class QLike extends EntityPathBase<Like> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final EnumPath<tool.tool.domain.board.like.domain.type.LikeKinds> likeKinds = createEnum("likeKinds", tool.tool.domain.board.like.domain.type.LikeKinds.class);
+
     public final tool.tool.domain.user.domain.QUser user;
 
     public QLike(String variable) {

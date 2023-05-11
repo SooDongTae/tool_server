@@ -2,6 +2,7 @@ package tool.tool.domain.board.like.facade;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.board.board.domain.Board;
 import tool.tool.domain.board.like.domain.Like;
 import tool.tool.domain.board.like.domain.repository.LikeRepository;
@@ -14,6 +15,7 @@ public class LikeFacade {
 
     private final LikeRepository likeRepository;
 
+    @Transactional
     public Like saveLike(Board board, User user, String kinds) {
         return likeRepository.save(Like.builder()
                 .board(board)

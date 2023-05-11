@@ -28,11 +28,13 @@ public class LikeService {
     public LikeResponse execute(Long boardId, LikeRequest request) {
         Board board = boardFacade.findBoardById(boardId);
         User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
-        Optional<Like> like = likeRepository.findByBoardAndUser(board, user);
-        if(like.isEmpty()) {
-            return LikeResponse.of(likeFacade.saveLike(board, user, request.getKinds()), board);
+        Optional<Like> like_ = likeRepository.findByBoardAndUser(board, user);
+        Like like;
+        if(like_.isEmpty()) {
+            like = likeFacade.saveLike(board, user, request.getKinds());
         } else {
-            return LikeResponse.of(like.get().update(request.getKinds()), board);
+            like = like_.get().update(request.getKinds());
         }
+        return LikeResponse.of(like);
     }
 }
