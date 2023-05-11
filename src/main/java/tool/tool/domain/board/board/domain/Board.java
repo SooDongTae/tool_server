@@ -6,8 +6,11 @@ import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.board.board.domain.category.BoardCategory;
 import tool.tool.domain.board.board.presentation.dto.request.BoardUpdateRequest;
+import tool.tool.domain.board.like.domain.Like;
 import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,6 +36,9 @@ public class Board extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "board")
+    private List<Like> likes;
 
     protected Board() {}
 
@@ -61,5 +67,12 @@ public class Board extends BaseTimeEntity {
 
     public void increaseViews() {
         this.views++;
+    }
+
+    public int getTotalLikes() {
+        return this.likes.stream()
+                .filter(chunk -> chunk.getLikeKinds().getKind().equals("like"))
+                .toList()
+                .size();
     }
 }

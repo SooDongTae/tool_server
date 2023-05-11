@@ -33,6 +33,8 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final ListPath<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike> likes = this.<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike>createList("likes", tool.tool.domain.board.like.domain.Like.class, tool.tool.domain.board.like.domain.QLike.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
 
