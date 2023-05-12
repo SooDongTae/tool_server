@@ -8,9 +8,6 @@ import lombok.RequiredArgsConstructor;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
-import tool.tool.domain.user.domain.Leader;
-import tool.tool.domain.user.domain.Participant;
-
 import java.util.List;
 
 import static tool.tool.domain.group_buying.domain.QGroupBuying.groupBuying;
