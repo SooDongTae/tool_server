@@ -35,9 +35,9 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath email = createString("email");
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    public final ListPath<tool.tool.domain.group_buying.domain.GroupBuying, tool.tool.domain.group_buying.domain.QGroupBuying> groupBuyingList = this.<tool.tool.domain.group_buying.domain.GroupBuying, tool.tool.domain.group_buying.domain.QGroupBuying>createList("groupBuyingList", tool.tool.domain.group_buying.domain.GroupBuying.class, tool.tool.domain.group_buying.domain.QGroupBuying.class, PathInits.DIRECT2);
 
-    public final ListPath<Leader, QLeader> leaders = this.<Leader, QLeader>createList("leaders", Leader.class, QLeader.class, PathInits.DIRECT2);
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final ListPath<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike> likes = this.<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike>createList("likes", tool.tool.domain.board.like.domain.Like.class, tool.tool.domain.board.like.domain.QLike.class, PathInits.DIRECT2);
 
