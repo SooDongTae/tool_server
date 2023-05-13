@@ -10,6 +10,7 @@ import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingListRe
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingResponse;
 import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.User;
+import tool.tool.domain.user.domain.repository.ParticipantRepository;
 import tool.tool.domain.user.facade.UserFacade;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class JoinedGroupBuyingListService {
 
     private final UserFacade userFacade;
     private final GroupBuyingFacade groupBuyingFacade;
+    private final ParticipantRepository participantRepository;
 
     @Transactional
     public GroupBuyingListResponse execute() {
@@ -29,7 +31,10 @@ public class JoinedGroupBuyingListService {
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
                         groupBuyingList.stream()
-                                .map(GroupBuyingResponse::of)
+                                .map(groupBuying -> {
+                                    List<Participant> participants = participantRepository.findByGroupBuying(groupBuying);
+                                    return GroupBuyingResponse.of(groupBuying, participants);
+                                })
                                 .collect(Collectors.toList()))
                 .build();
     }
