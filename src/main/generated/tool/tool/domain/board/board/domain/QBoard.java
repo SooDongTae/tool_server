@@ -40,6 +40,8 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final StringPath title = createString("title");
 
+    public final NumberPath<Integer> totalLikes = createNumber("totalLikes", Integer.class);
+
     public final tool.tool.domain.user.domain.QUser user;
 
     public final NumberPath<Integer> views = createNumber("views", Integer.class);
