@@ -5,13 +5,16 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import tool.tool.domain.user.domain.User;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
+
 import java.util.List;
 
 import static tool.tool.domain.group_buying.domain.QGroupBuying.groupBuying;
-import static tool.tool.domain.user.domain.QLeader.leader;
+import static tool.tool.domain.user.domain.QUser.user;
+
 
 @RequiredArgsConstructor
 public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
@@ -22,7 +25,7 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
     public List<GroupBuying> findGroupBuyingList(String category, int limit, int offset, String field, String sortWay, String title, String status) {
         return jpaQueryFactory
                 .selectFrom(groupBuying)
-                .join(groupBuying.leader, leader).fetchJoin()
+                .join(groupBuying.user, user).fetchJoin()
                 .where(
                         categoryEq(category),
                         groupBuying.title.contains(title),
@@ -32,6 +35,16 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
                 .offset(offset)
                 .orderBy(
                         sortByField(field, sortWay)
+                )
+                .fetch();
+    }
+
+    public List<GroupBuying> findGroupBuyingListByUser(User findUser) {
+        return jpaQueryFactory
+                .selectFrom(groupBuying)
+                .join(groupBuying.user, user).fetchJoin()
+                .where(
+                        groupBuying.user.eq(findUser)
                 )
                 .fetch();
     }

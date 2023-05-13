@@ -18,8 +18,8 @@ public class CompleteGroupBuyingService {
     @Transactional
     public void execute(Long id) {
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(id);
-        User currentUser = userFacade.findUserById(userFacade.getCurrentUser().getId());
-        userFacade.checkUser(currentUser, groupBuying.getLeader().getUser());
+        User currentUser = userFacade.getCurrentUser();
+        userFacade.checkUser(currentUser, groupBuying.getUser());
         groupBuying.statusUpdate("completed");
         currentUser.increaseRatingScore();
     }

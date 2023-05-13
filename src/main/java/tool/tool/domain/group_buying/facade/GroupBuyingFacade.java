@@ -10,13 +10,12 @@ import tool.tool.domain.group_buying.domain.type.Status;
 import tool.tool.domain.group_buying.exception.GroupBuyingNotFound;
 import tool.tool.domain.group_buying.exception.PeopleMaxException;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
-import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.Participant;
+import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +26,7 @@ public class GroupBuyingFacade {
     private final UserRepository userRepository;
 
     @Transactional
-    public GroupBuying saveGroupBuying(GroupBuyingCreateRequest request, Leader leader) {
+    public GroupBuying saveGroupBuying(GroupBuyingCreateRequest request, User user) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         return groupBuyingRepository.save(
                 GroupBuying.builder()
@@ -37,7 +36,7 @@ public class GroupBuyingFacade {
                         .cost(request.getCost())
                         .category(Category.valueOf(request.getCategory()))
                         .status(Status.ACTIVATED)
-                        .leader(leader)
+                        .user(user)
                         .untilAt(LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter))
                         .build()
         );
@@ -56,8 +55,8 @@ public class GroupBuyingFacade {
     }
 
     @Transactional
-    public List<GroupBuying> getGroupBuyingByLeader(List<Leader> leaders) {
-        return leaders.stream().map(Leader::getGroupBuying).collect(Collectors.toList());
+    public List<GroupBuying> getGroupBuyingByUser(User user) {
+        return groupBuyingRepository.findGroupBuyingListByUser(user);
     }
 
     @Transactional

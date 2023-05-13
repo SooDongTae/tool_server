@@ -19,7 +19,7 @@ public class CancelGroupBuyingService {
     public void execute(Long id) {
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(id);
         User currentUser = userFacade.getCurrentUser();
-        userFacade.checkUser(currentUser, groupBuying.getLeader().getUser());
+        userFacade.checkUser(currentUser, groupBuying.getUser());
         groupBuying.statusUpdate("canceled");
     }
 }

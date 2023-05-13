@@ -23,7 +23,7 @@ public class MyGroupBuyingListService {
     @Transactional
     public GroupBuyingListResponse execute() {
         User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
-        List<GroupBuying> groupBuyingList = groupBuyingFacade.getGroupBuyingByLeader(user.getLeaders());
+        List<GroupBuying> groupBuyingList = groupBuyingFacade.getGroupBuyingByUser(user);
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
                         groupBuyingList.stream()

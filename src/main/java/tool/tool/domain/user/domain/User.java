@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.answer.domain.Answer;
 import tool.tool.domain.board.board.domain.Board;
 import tool.tool.domain.board.like.domain.Like;
+import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.user.domain.type.Authority;
 import tool.tool.domain.user.domain.type.StuNumber;
@@ -43,7 +44,7 @@ public class User extends BaseTimeEntity {
     private Authority authority;
 
     @OneToMany(mappedBy = "user")
-    private List<Leader> leaders;
+    private List<GroupBuying> groupBuyingList;
 
     @OneToMany(mappedBy = "user")
     private List<Participant> participants;

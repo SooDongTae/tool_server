@@ -8,8 +8,8 @@ import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.group_buying.domain.type.Category;
 import tool.tool.domain.group_buying.domain.type.Status;
 import tool.tool.domain.question.domain.Question;
-import tool.tool.domain.user.domain.Leader;
 import tool.tool.domain.user.domain.Participant;
+import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
 import java.time.LocalDateTime;
@@ -52,9 +52,9 @@ public class GroupBuying extends BaseTimeEntity {
     @ColumnDefault("0")
     private int views;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "leader_id")
-    private Leader leader;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "groupBuying")
     private List<Participant> participants;
@@ -65,7 +65,7 @@ public class GroupBuying extends BaseTimeEntity {
     protected GroupBuying() {}
 
     @Builder
-    public GroupBuying(Long id, String title, String content, int cost, int maxPeople, int currentPeople, Category category, Status status, String imgSrc, LocalDateTime untilAt, Leader leader, List<Participant> participants) {
+    public GroupBuying(Long id, String title, String content, int cost, int maxPeople, int currentPeople, Category category, Status status, String imgSrc, LocalDateTime untilAt, User user, List<Participant> participants) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -76,7 +76,7 @@ public class GroupBuying extends BaseTimeEntity {
         this.status = status;
         this.imgSrc = imgSrc;
         this.untilAt = untilAt;
-        this.leader = leader;
+        this.user = user;
         this.participants = participants;
     }
     

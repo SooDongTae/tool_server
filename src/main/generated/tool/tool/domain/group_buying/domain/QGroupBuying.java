@@ -39,8 +39,6 @@ public class QGroupBuying extends EntityPathBase<GroupBuying> {
 
     public final StringPath imgSrc = createString("imgSrc");
 
-    public final tool.tool.domain.user.domain.QLeader leader;
-
     public final NumberPath<Integer> maxPeople = createNumber("maxPeople", Integer.class);
 
     //inherited
@@ -55,6 +53,8 @@ public class QGroupBuying extends EntityPathBase<GroupBuying> {
     public final StringPath title = createString("title");
 
     public final DateTimePath<java.time.LocalDateTime> untilAt = createDateTime("untilAt", java.time.LocalDateTime.class);
+
+    public final tool.tool.domain.user.domain.QUser user;
 
     public final NumberPath<Integer> views = createNumber("views", Integer.class);
 
@@ -76,7 +76,7 @@ public class QGroupBuying extends EntityPathBase<GroupBuying> {
 
     public QGroupBuying(Class<? extends GroupBuying> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.leader = inits.isInitialized("leader") ? new tool.tool.domain.user.domain.QLeader(forProperty("leader"), inits.get("leader")) : null;
+        this.user = inits.isInitialized("user") ? new tool.tool.domain.user.domain.QUser(forProperty("user"), inits.get("user")) : null;
     }
 
 }

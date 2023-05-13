@@ -25,7 +25,7 @@ public class GroupBuyingUpdateService {
     public void execute(Long id, GroupBuyingUpdateRequest request, MultipartFile file) throws IOException {
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(id);
         User currentUser = userFacade.getCurrentUser();
-        User writer = groupBuying.getLeader().getUser();
+        User writer = groupBuying.getUser();
         userFacade.checkUser(currentUser, writer);
         groupBuying.update(request);
         if(!file.isEmpty()) {
