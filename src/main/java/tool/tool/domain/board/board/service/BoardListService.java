@@ -19,15 +19,7 @@ public class BoardListService {
     @Transactional
     public BoardListResponse execute(int size, int page, String title, String category) {
         Pageable pageable = PageRequest.of(page - 1, size);
-        Page<Board> boards = getAllOrByCategory(title, category, pageable);
+        Page<Board> boards = boardRepository.findByCategoryAndTitleContaining(category, title,  pageable);
         return BoardListResponse.of(boards);
-    }
-
-    private Page<Board> getAllOrByCategory(String title, String category, Pageable pageable) {
-        if(category.equals("all")) {
-            return boardRepository.findByTitleContaining(title, pageable);
-        } else {
-            return boardRepository.findByCategoryAndTitleContaining(category, title, pageable);
-        }
     }
 }

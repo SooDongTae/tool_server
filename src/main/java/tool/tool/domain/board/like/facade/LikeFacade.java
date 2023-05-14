@@ -16,11 +16,11 @@ public class LikeFacade {
     private final LikeRepository likeRepository;
 
     @Transactional
-    public Like saveLike(Board board, User user, String kinds) {
+    public Like saveLike(Board board, User user) {
         return likeRepository.save(Like.builder()
                 .board(board)
                 .user(user)
-                .likeKinds(LikeKinds.valueOf(kinds))
+                .likeKinds(LikeKinds.valueOf("LIKE"))
                 .build());
 
     }

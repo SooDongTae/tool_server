@@ -3,6 +3,7 @@ package tool.tool.domain.group_buying.presentation.dto.response;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.domain.GroupBuying;
+import tool.tool.domain.user.domain.Participant;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,7 +28,7 @@ public class GroupBuyingResponse {
     private LocalDateTime untilAt;
     private List<ParticipantResponse> participantResponseList;
 
-    public static GroupBuyingResponse of(GroupBuying groupBuying) {
+    public static GroupBuyingResponse of(GroupBuying groupBuying, List<Participant> participants) {
         return GroupBuyingResponse.builder()
                 .id(groupBuying.getId())
                 .title(groupBuying.getTitle())
@@ -43,7 +44,7 @@ public class GroupBuyingResponse {
                 .cost(groupBuying.getCost())
                 .status(groupBuying.getStatus().getName())
                 .untilAt(groupBuying.getUntilAt())
-                .participantResponseList(groupBuying.getParticipants().stream().map(ParticipantResponse::of).collect(Collectors.toList()))
+                .participantResponseList(participants.stream().map(ParticipantResponse::of).collect(Collectors.toList()))
                 .build();
     }
 

@@ -7,7 +7,8 @@ import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.repository.GroupBuyingRepository;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingListResponse;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingResponse;
-import tool.tool.domain.user.domain.User;
+import tool.tool.domain.user.domain.Participant;
+import tool.tool.domain.user.domain.repository.ParticipantRepository;
 import tool.tool.domain.user.domain.repository.UserRepository;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class GroupBuyingListService {
 
     private final GroupBuyingRepository groupBuyingRepository;
     private final UserRepository userRepository;
+    private final ParticipantRepository participantRepository;
 
     @Transactional
     public GroupBuyingListResponse execute(
@@ -31,11 +33,13 @@ public class GroupBuyingListService {
             String status
     ) {
         List<GroupBuying> groupBuyingList = groupBuyingRepository.findGroupBuyingList(category, limit, offset, sortField, sortWay, title, status);
-        System.out.println("============================= n+1 시점 확인용 ==================================");
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
                 groupBuyingList
-                .stream().map(GroupBuyingResponse::of).collect(Collectors.toList()))
+                .stream().map(groupBuying -> {
+                    List<Participant> participants = participantRepository.findByGroupBuying(groupBuying);
+                    return GroupBuyingResponse.of(groupBuying, participants);
+                        }).collect(Collectors.toList()))
                 .build();
     }
 }

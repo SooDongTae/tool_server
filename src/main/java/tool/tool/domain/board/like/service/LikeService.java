@@ -31,10 +31,19 @@ public class LikeService {
         Optional<Like> like_ = likeRepository.findByBoardAndUser(board, user);
         Like like;
         if(like_.isEmpty()) {
-            like = likeFacade.saveLike(board, user, request.getKinds());
+            like = likeFacade.saveLike(board, user);
         } else {
             like = like_.get().update(request.getKinds());
         }
+        increaseOrDecreaseLike(like, board);
         return LikeResponse.of(like);
+    }
+
+    private void increaseOrDecreaseLike(Like like, Board board) {
+        if(like.getLikeKinds().getKind().equals("like")) {
+            board.updateTotalLikes(board.getTotalLikes()+1);
+        } else {
+            board.updateTotalLikes(board.getTotalLikes()-1);
+        }
     }
 }

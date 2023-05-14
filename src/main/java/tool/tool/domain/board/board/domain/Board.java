@@ -29,6 +29,10 @@ public class Board extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private BoardCategory category;
 
+    @Column(name = "board_totalLikes")
+    @ColumnDefault("0")
+    private int totalLikes;
+
     @Column(name = "board_views")
     @ColumnDefault("0")
     private int views;
@@ -69,10 +73,6 @@ public class Board extends BaseTimeEntity {
         this.views++;
     }
 
-    public int getTotalLikes() {
-        return this.likes.stream()
-                .filter(chunk -> chunk.getLikeKinds().getKind().equals("like"))
-                .toList()
-                .size();
-    }
+    public void updateTotalLikes(int likes) {this.totalLikes = likes;}
+
 }
