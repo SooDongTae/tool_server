@@ -7,6 +7,7 @@ import tool.tool.domain.board.board.domain.Board;
 import tool.tool.domain.board.board.facade.BoardFacade;
 import tool.tool.domain.board.like.domain.Like;
 import tool.tool.domain.board.like.domain.repository.LikeRepository;
+import tool.tool.domain.board.like.domain.type.LikeKinds;
 import tool.tool.domain.board.like.facade.LikeFacade;
 import tool.tool.domain.board.like.presentation.dto.request.LikeRequest;
 import tool.tool.domain.board.like.presentation.dto.response.LikeResponse;
@@ -40,7 +41,7 @@ public class LikeService {
     }
 
     private void increaseOrDecreaseLike(Like like, Board board) {
-        if(like.getLikeKinds().getKind().equals("like")) {
+        if(like.getLikeKinds().getKind().equals(LikeKinds.LIKE.getKind())) {
             board.updateTotalLikes(board.getTotalLikes()+1);
         } else {
             board.updateTotalLikes(board.getTotalLikes()-1);

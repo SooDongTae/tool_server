@@ -20,7 +20,7 @@ public class LikeFacade {
         return likeRepository.save(Like.builder()
                 .board(board)
                 .user(user)
-                .likeKinds(LikeKinds.valueOf("LIKE"))
+                .likeKinds(LikeKinds.LIKE)
                 .build());
 
     }

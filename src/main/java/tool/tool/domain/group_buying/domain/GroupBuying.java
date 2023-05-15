@@ -102,7 +102,7 @@ public class GroupBuying extends BaseTimeEntity {
         this.imgSrc = "http://localhost:8080/api/image/" + fileName;
     }
 
-    public void statusUpdate(String status) {
-        this.status = Status.valueOf(status);
+    public void statusUpdate(Status status) {
+        this.status = status;
     }
 }
