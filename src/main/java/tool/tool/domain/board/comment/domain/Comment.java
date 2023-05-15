@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.board.board.domain.Board;
+import tool.tool.domain.board.comment.presentation.dto.request.CommentUpdateRequest;
 import tool.tool.domain.user.domain.User;
 import tool.tool.global.entity.BaseTimeEntity;
 
@@ -34,5 +35,9 @@ public class Comment extends BaseTimeEntity {
         this.content = content;
         this.board = board;
         this.user = user;
+    }
+
+    public void update(CommentUpdateRequest request) {
+        this.content = request.getContent();
     }
 }
