@@ -7,6 +7,7 @@ import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.answer.domain.Answer;
 import tool.tool.domain.board.board.domain.Board;
+import tool.tool.domain.board.comment.domain.Comment;
 import tool.tool.domain.board.like.domain.Like;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.question.domain.Question;
@@ -60,6 +61,9 @@ public class User extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "user")
     private List<Like> likes;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
 
     protected User() {}
 
