@@ -21,7 +21,6 @@ public class MyGroupBuyingListService {
 
     private final UserFacade userFacade;
     private final GroupBuyingFacade groupBuyingFacade;
-    private final ParticipantRepository participantRepository;
 
     @Transactional
     public GroupBuyingListResponse execute() {
@@ -29,12 +28,8 @@ public class MyGroupBuyingListService {
         List<GroupBuying> groupBuyingList = groupBuyingFacade.getGroupBuyingByUser(user);
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
-                        groupBuyingList.stream()
-                                .map(groupBuying -> {
-                                    List<Participant> participants = participantRepository.findByGroupBuying(groupBuying);
-                                    return GroupBuyingResponse.of(groupBuying, participants);
-                                })
-                                .collect(Collectors.toList()))
+                        groupBuyingList.stream().map(GroupBuyingResponse::of).collect(Collectors.toList())
+                )
                 .build();
     }
 }

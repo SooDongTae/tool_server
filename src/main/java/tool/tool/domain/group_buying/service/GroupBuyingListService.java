@@ -36,10 +36,7 @@ public class GroupBuyingListService {
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
                 groupBuyingList
-                .stream().map(groupBuying -> {
-                    List<Participant> participants = participantRepository.findByGroupBuying(groupBuying);
-                    return GroupBuyingResponse.of(groupBuying, participants);
-                        }).collect(Collectors.toList()))
+                .stream().map(GroupBuyingResponse::of).collect(Collectors.toList()))
                 .build();
     }
 }

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Builder
-public class GroupBuyingResponse {
+public class GroupBuyingDetailResponse {
     private Long id;
     private String title;
     private String content;
@@ -26,9 +26,10 @@ public class GroupBuyingResponse {
     private int cost;
     private String status;
     private LocalDateTime untilAt;
+    private List<ParticipantResponse> participantResponses;
 
-    public static GroupBuyingResponse of(GroupBuying groupBuying) {
-        return GroupBuyingResponse.builder()
+    public static GroupBuyingDetailResponse of(GroupBuying groupBuying, List<Participant> participants) {
+        return GroupBuyingDetailResponse.builder()
                 .id(groupBuying.getId())
                 .title(groupBuying.getTitle())
                 .content(groupBuying.getContent())
@@ -43,7 +44,7 @@ public class GroupBuyingResponse {
                 .cost(groupBuying.getCost())
                 .status(groupBuying.getStatus().getName())
                 .untilAt(groupBuying.getUntilAt())
+                .participantResponses(participants.stream().map(ParticipantResponse::of).collect(Collectors.toList()))
                 .build();
     }
-
 }
