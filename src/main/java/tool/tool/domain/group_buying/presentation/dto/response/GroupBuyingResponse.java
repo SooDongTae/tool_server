@@ -3,11 +3,8 @@ package tool.tool.domain.group_buying.presentation.dto.response;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.domain.GroupBuying;
-import tool.tool.domain.user.domain.Participant;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Builder

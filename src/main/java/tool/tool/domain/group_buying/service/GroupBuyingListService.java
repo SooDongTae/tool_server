@@ -7,9 +7,6 @@ import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.repository.GroupBuyingRepository;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingListResponse;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingResponse;
-import tool.tool.domain.user.domain.Participant;
-import tool.tool.domain.user.domain.repository.ParticipantRepository;
-import tool.tool.domain.user.domain.repository.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +16,6 @@ import java.util.stream.Collectors;
 public class GroupBuyingListService {
 
     private final GroupBuyingRepository groupBuyingRepository;
-    private final UserRepository userRepository;
-    private final ParticipantRepository participantRepository;
 
     @Transactional
     public GroupBuyingListResponse execute(

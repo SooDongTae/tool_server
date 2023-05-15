@@ -7,9 +7,7 @@ import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingListResponse;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingResponse;
-import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.User;
-import tool.tool.domain.user.domain.repository.ParticipantRepository;
 import tool.tool.domain.user.facade.UserFacade;
 
 import java.util.List;
