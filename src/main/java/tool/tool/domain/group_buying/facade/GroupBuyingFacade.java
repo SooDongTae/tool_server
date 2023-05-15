@@ -66,7 +66,7 @@ public class GroupBuyingFacade {
 
     @Transactional
     public void expireGroupBuying(List<GroupBuying> groupBuyingList) {
-        groupBuyingList.forEach(groupBuying -> {groupBuying.statusUpdate("EXPIRED");});
+        groupBuyingList.forEach(groupBuying -> {groupBuying.statusUpdate(Status.EXPIRED);});
     }
 
 }

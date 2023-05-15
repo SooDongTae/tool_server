@@ -14,9 +14,10 @@ public class BoardDetailResponse{
     private String title;
     private int views;
     private int likes;
+    private String myLike;
     private String content;
 
-    public static BoardDetailResponse of(Board board) {
+    public static BoardDetailResponse of(Board board, String myLike) {
         return BoardDetailResponse.builder()
                 .grade(board.getUser().getStuNumber().getGrade())
                 .class_no(board.getUser().getStuNumber().getBan())
@@ -25,6 +26,7 @@ public class BoardDetailResponse{
                 .title(board.getTitle())
                 .views(board.getViews())
                 .likes(board.getTotalLikes())
+                .myLike(myLike)
                 .content(board.getContent())
                 .build();
     }
