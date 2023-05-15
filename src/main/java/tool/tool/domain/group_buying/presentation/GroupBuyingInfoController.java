@@ -2,6 +2,7 @@ package tool.tool.domain.group_buying.presentation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingDetailResponse;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingListResponse;
 import tool.tool.domain.group_buying.presentation.dto.response.GroupBuyingResponse;
 import tool.tool.domain.group_buying.service.GroupBuyingDetailService;
@@ -35,7 +36,7 @@ public class GroupBuyingInfoController {
     }
 
     @GetMapping("/{id}")
-    public GroupBuyingResponse getGroupBuyingDetail(@PathVariable Long id) {
+    public GroupBuyingDetailResponse getGroupBuyingDetail(@PathVariable Long id) {
         return groupBuyingDetailService.execute(id);
     }
 
