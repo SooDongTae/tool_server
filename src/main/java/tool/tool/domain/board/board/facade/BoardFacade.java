@@ -17,16 +17,6 @@ public class BoardFacade {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Board saveBoard(BoardCreateRequest request, User user) {
-        return boardRepository.save(Board.builder()
-                .title(request.getTitle())
-                .content(request.getContent())
-                .category(BoardCategory.valueOf(request.getCategory()))
-                .user(user)
-                .build());
-    }
-
-    @Transactional
     public Board findBoardById(Long id) {
         return boardRepository.findById(id)
                 .orElseThrow(() -> BoardNotFound.EXCEPTION);

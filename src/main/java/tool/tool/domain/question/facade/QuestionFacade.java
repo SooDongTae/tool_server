@@ -19,18 +19,6 @@ public class QuestionFacade {
     private final QuestionRepository questionRepository;
 
     @Transactional
-    public Question saveQuestion(GroupBuying groupBuying, User user, QuestionCreateRequest request) {
-        return questionRepository.save(
-                Question.builder()
-                        .content(request.getContent())
-                        .isSecret(request.isSecret())
-                        .groupBuying(groupBuying)
-                        .user(user)
-                        .build()
-                );
-    }
-
-    @Transactional
     public Question findQuestionById(Long id) {
         return questionRepository.findById(id)
                 .orElseThrow(() -> QuestionNotFound.EXCEPTION);

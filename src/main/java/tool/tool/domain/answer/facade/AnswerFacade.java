@@ -16,15 +16,6 @@ public class AnswerFacade {
     private final AnswerRepository answerRepository;
 
     @Transactional
-    public Answer saveAnswer(Question question, User user, String content) {
-        return answerRepository.save(Answer.builder()
-                .content(content)
-                .question(question)
-                .user(user)
-                .build());
-    }
-
-    @Transactional
     public Answer findAnswerById(Long id) {
         return answerRepository.findById(id)
                 .orElseThrow(() -> AnswerNotFound.EXCEPTION);

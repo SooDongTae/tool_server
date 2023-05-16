@@ -14,6 +14,6 @@ public class AnswerCreateController {
 
     @PostMapping("/{questionId}")
     public void createAnswer(@PathVariable Long questionId, @RequestBody AnswerCreateRequest request) {
-        answerCreateService.execute(questionId, request.getContent());
+        answerCreateService.execute(questionId, request);
     }
 }
