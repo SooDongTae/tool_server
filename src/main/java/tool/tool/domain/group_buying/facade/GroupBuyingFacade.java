@@ -26,23 +26,6 @@ public class GroupBuyingFacade {
     private final UserRepository userRepository;
 
     @Transactional
-    public GroupBuying saveGroupBuying(GroupBuyingCreateRequest request, User user) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-        return groupBuyingRepository.save(
-                GroupBuying.builder()
-                        .title(request.getTitle())
-                        .maxPeople(request.getMaxPeople())
-                        .content(request.getContent())
-                        .cost(request.getCost())
-                        .category(Category.valueOf(request.getCategory()))
-                        .status(Status.ACTIVATED)
-                        .user(user)
-                        .untilAt(LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter))
-                        .build()
-        );
-    }
-
-    @Transactional
     public GroupBuying findGroupBuyingById(Long id) {
         return groupBuyingRepository.findById(id)
                 .orElseThrow(() -> GroupBuyingNotFound.EXCEPTION);

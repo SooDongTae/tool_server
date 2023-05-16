@@ -52,6 +52,12 @@ public class GroupBuying extends BaseTimeEntity {
     @ColumnDefault("0")
     private int views;
 
+    @Column(name = "owner_account")
+    private String ownerAccount;
+
+    @Column(name = "owner_bank")
+    private String ownerBank;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -65,7 +71,7 @@ public class GroupBuying extends BaseTimeEntity {
     protected GroupBuying() {}
 
     @Builder
-    public GroupBuying(Long id, String title, String content, int cost, int maxPeople, int currentPeople, Category category, Status status, String imgSrc, LocalDateTime untilAt, User user, List<Participant> participants) {
+    public GroupBuying(Long id, String title, String content, int cost, int maxPeople, int currentPeople, Category category, Status status, String imgSrc, LocalDateTime untilAt, int views, String ownerAccount, String ownerBank, User user, List<Participant> participants, List<Question> questions) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -76,8 +82,12 @@ public class GroupBuying extends BaseTimeEntity {
         this.status = status;
         this.imgSrc = imgSrc;
         this.untilAt = untilAt;
+        this.views = views;
+        this.ownerAccount = ownerAccount;
+        this.ownerBank = ownerBank;
         this.user = user;
         this.participants = participants;
+        this.questions = questions;
     }
     
     public void update(GroupBuyingUpdateRequest request) {

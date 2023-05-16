@@ -3,8 +3,8 @@ package tool.tool.domain.answer.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tool.tool.domain.answer.domain.Answer;
-import tool.tool.domain.answer.facade.AnswerFacade;
+import tool.tool.domain.answer.domain.repository.AnswerRepository;
+import tool.tool.domain.answer.presentation.dto.request.AnswerCreateRequest;
 import tool.tool.domain.question.domain.Question;
 import tool.tool.domain.question.facade.QuestionFacade;
 import tool.tool.domain.user.domain.User;
@@ -16,15 +16,13 @@ public class AnswerCreateService {
 
     private final QuestionFacade questionFacade;
     private final UserFacade userFacade;
-    private final AnswerFacade answerFacade;
+    private final AnswerRepository answerRepository;
 
     @Transactional
-    public void execute(Long questionId, String content) {
+    public void execute(Long questionId, AnswerCreateRequest request) {
         Question question = questionFacade.findQuestionById(questionId);
         User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
-        Answer answer = answerFacade.saveAnswer(question, user, content);
-        answer.setQuestion(question);
-        answer.setUser(user);
+        answerRepository.save(request.toEntity(question, user));
     }
 
 }
