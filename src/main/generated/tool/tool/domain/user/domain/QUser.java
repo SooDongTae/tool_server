@@ -30,6 +30,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final ListPath<tool.tool.domain.board.board.domain.Board, tool.tool.domain.board.board.domain.QBoard> boardList = this.<tool.tool.domain.board.board.domain.Board, tool.tool.domain.board.board.domain.QBoard>createList("boardList", tool.tool.domain.board.board.domain.Board.class, tool.tool.domain.board.board.domain.QBoard.class, PathInits.DIRECT2);
 
+    public final ListPath<tool.tool.domain.board.comment.domain.Comment, tool.tool.domain.board.comment.domain.QComment> comments = this.<tool.tool.domain.board.comment.domain.Comment, tool.tool.domain.board.comment.domain.QComment>createList("comments", tool.tool.domain.board.comment.domain.Comment.class, tool.tool.domain.board.comment.domain.QComment.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 

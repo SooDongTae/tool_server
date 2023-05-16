@@ -26,6 +26,8 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final EnumPath<tool.tool.domain.board.board.domain.category.BoardCategory> category = createEnum("category", tool.tool.domain.board.board.domain.category.BoardCategory.class);
 
+    public final ListPath<tool.tool.domain.board.comment.domain.Comment, tool.tool.domain.board.comment.domain.QComment> comments = this.<tool.tool.domain.board.comment.domain.Comment, tool.tool.domain.board.comment.domain.QComment>createList("comments", tool.tool.domain.board.comment.domain.Comment.class, tool.tool.domain.board.comment.domain.QComment.class, PathInits.DIRECT2);
+
     public final StringPath content = createString("content");
 
     //inherited
