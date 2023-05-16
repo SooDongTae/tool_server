@@ -2,6 +2,7 @@ package tool.tool.domain.board.comment.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.board.board.domain.Board;
 import tool.tool.domain.board.board.facade.BoardFacade;
 import tool.tool.domain.board.comment.domain.Comment;
@@ -19,6 +20,7 @@ public class CommentListService {
     private final BoardFacade boardFacade;
     private final CommentRepository commentRepository;
 
+    @Transactional
     public CommentListResponse execute(Long board_id) {
         Board board = boardFacade.findBoardById(board_id);
         List<Comment> comments = commentRepository.findByBoard(board);

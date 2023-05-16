@@ -2,6 +2,7 @@ package tool.tool.domain.board.comment.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.board.comment.domain.Comment;
 import tool.tool.domain.board.comment.domain.repository.CommentRepository;
 import tool.tool.domain.board.comment.facade.CommentFacade;
@@ -16,6 +17,7 @@ public class CommentDeleteService {
     private final UserFacade userFacade;
     private final CommentRepository commentRepository;
 
+    @Transactional
     public void execute(Long id) {
         Comment comment = commentFacade.findById(id);
         User currentUser = userFacade.getCurrentUser();
