@@ -50,14 +50,6 @@ public class Board extends BaseTimeEntity {
 
     protected Board() {}
 
-    public void setUser(User user) {
-        if(this.user != null) {
-            user.getBoardList().remove(this);
-        }
-        this.user = user;
-        user.getBoardList().add(this);
-    }
-
     @Builder
     public Board(Long id, String title, String content, BoardCategory category, User user) {
         this.id = id;

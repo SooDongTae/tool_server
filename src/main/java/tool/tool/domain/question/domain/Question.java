@@ -46,22 +46,6 @@ public class Question extends BaseTimeEntity {
         this.user = user;
     }
 
-    public void setGroupBuying(GroupBuying groupBuying) {
-        if(this.groupBuying != null) {
-            this.groupBuying.getQuestions().remove(this);
-        }
-        this.groupBuying = groupBuying;
-        groupBuying.getQuestions().add(this);
-    }
-
-    public void setUser(User user) {
-        if(this.user != null) {
-            this.user.getQuestions().remove(this);
-        }
-        this.user = user;
-        user.getQuestions().add(this);
-    }
-
     public void update(QuestionUpdateRequest request) {
         this.content = request.getContent();
     }
