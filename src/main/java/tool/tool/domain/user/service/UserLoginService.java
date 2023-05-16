@@ -1,5 +1,7 @@
 package tool.tool.domain.user.service;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +14,9 @@ import tool.tool.global.security.jwt.JwtTokenProvider;
 @RequiredArgsConstructor
 public class UserLoginService {
 
-
     private final UserSaveOrUpdateService userSaveOrUpdateService;
     private final JwtTokenProvider jwtTokenProvider;
+
     public TokenResponse execute(String authCode) {
         User user = userSaveOrUpdateService.execute(authCode);
         return TokenResponse.builder()

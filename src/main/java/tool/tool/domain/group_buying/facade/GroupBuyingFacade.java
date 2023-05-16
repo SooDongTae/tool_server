@@ -38,6 +38,8 @@ public class GroupBuyingFacade {
                         .status(Status.ACTIVATED)
                         .user(user)
                         .untilAt(LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter))
+                        .ownerAccount(request.getAccount())
+                        .ownerBank(request.getBank())
                         .build()
         );
     }
