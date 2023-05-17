@@ -21,4 +21,10 @@ public class Participant extends BaseTimeEntity {
     @JoinColumn(name = "group_buying_id")
     private GroupBuying groupBuying;
 
+    @Builder
+    public Participant(Long id, User user, GroupBuying groupBuying) {
+        this.id = id;
+        this.user = user;
+        this.groupBuying = groupBuying;
+    }
 }
