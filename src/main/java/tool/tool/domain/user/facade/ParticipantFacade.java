@@ -16,9 +16,9 @@ public class ParticipantFacade {
 
     @Transactional
     public Participant saveParticipant(User user, GroupBuying groupBuying) {
-        Participant participant = new Participant();
-        participant.setUser(user);
-        participant.setGroupBuying(groupBuying);
-        return participantRepository.save(participant);
+        return participantRepository.save(Participant.builder()
+                .groupBuying(groupBuying)
+                .user(user)
+                .build());
     }
 }
