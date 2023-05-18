@@ -35,6 +35,7 @@ public class UserFacade {
                         .num(resource.getStudent().getStudentNo())
                         .build()
                 )
+                .profileUrl(resource.getProfileUrl())
                 .authority(Authority.ROLE_USER)
                 .build()
         );
