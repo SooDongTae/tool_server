@@ -19,6 +19,8 @@ public class GroupBuyingDetailResponse {
     private int class_no;
     private int student_no;
     private String owner;
+    private int ownerRating;
+    private int ownerRatingScore;
     private String imgSrc;
     private int maxPeople;
     private int currentPeople;
@@ -37,6 +39,8 @@ public class GroupBuyingDetailResponse {
                 .class_no(groupBuying.getUser().getStuNumber().getBan())
                 .student_no(groupBuying.getUser().getStuNumber().getNum())
                 .owner(groupBuying.getUser().getName())
+                .ownerRating(groupBuying.getUser().getRating())
+                .ownerRatingScore(groupBuying.getUser().getRatingScore())
                 .imgSrc(groupBuying.getImgSrc())
                 .maxPeople(groupBuying.getMaxPeople())
                 .currentPeople(groupBuying.getCurrentPeople())
