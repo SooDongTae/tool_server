@@ -12,6 +12,8 @@ public class UserResponse {
     private int grade;
     private int classNo;
     private int stuNo;
+    private String email;
+    private String profileUrl;
 
     public static UserResponse of(User user) {
         return UserResponse.builder()
@@ -20,6 +22,8 @@ public class UserResponse {
                 .grade(user.getStuNumber().getGrade())
                 .classNo(user.getStuNumber().getBan())
                 .stuNo(user.getStuNumber().getNum())
+                .email(user.getEmail())
+                .profileUrl(user.getProfileUrl())
                 .build();
     }
 }
