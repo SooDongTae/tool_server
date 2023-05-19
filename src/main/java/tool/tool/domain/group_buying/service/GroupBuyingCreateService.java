@@ -21,10 +21,11 @@ public class GroupBuyingCreateService {
     private final ImageSaveService imageService;
 
     @Transactional
-    public void execute(GroupBuyingCreateRequest request, MultipartFile file) throws IOException {
+    public Long execute(GroupBuyingCreateRequest request, MultipartFile file) throws IOException {
         User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
         GroupBuying groupBuying = groupBuyingRepository.save(request.toEntity(user));
         String imgSrc = imageService.execute(file);
         groupBuying.updateImg(imgSrc);
+        return groupBuying.getId();
     }
 }

@@ -23,8 +23,8 @@ public class GroupBuyingCreateOrUpdateController {
     private final CancelGroupBuyingService cancelGroupBuyingService;
 
     @PostMapping("/create")
-    public void createGroupBuying(@RequestPart GroupBuyingCreateRequest request, @RequestPart MultipartFile file) throws IOException {
-        groupBuyingCreateService.execute(request, file);
+    public Long createGroupBuying(@RequestPart GroupBuyingCreateRequest request, @RequestPart MultipartFile file) throws IOException {
+        return groupBuyingCreateService.execute(request, file);
     }
 
     @PutMapping("/{id}")
