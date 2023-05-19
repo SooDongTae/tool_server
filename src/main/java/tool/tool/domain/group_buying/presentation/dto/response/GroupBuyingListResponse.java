@@ -8,5 +8,6 @@ import java.util.List;
 @Getter
 @Builder
 public class GroupBuyingListResponse {
+    private int maxPage;
     private List<GroupBuyingResponse> groupBuyingResponseList;
 }

@@ -1,6 +1,9 @@
 package tool.tool.domain.group_buying.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tool.tool.domain.group_buying.domain.GroupBuying;
@@ -27,11 +30,13 @@ public class GroupBuyingListService {
             String title,
             String status
     ) {
-        List<GroupBuying> groupBuyingList = groupBuyingRepository.findGroupBuyingList(category, limit, offset, sortField, sortWay, title, status);
+        Pageable pageable = PageRequest.of(offset - 1, limit);
+        Page<GroupBuying> groupBuyingList = groupBuyingRepository.findGroupBuyingList(category, sortField, sortWay, title, status, pageable);
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
                 groupBuyingList
                 .stream().map(GroupBuyingResponse::of).collect(Collectors.toList()))
+                .maxPage(groupBuyingList.getTotalPages())
                 .build();
     }
 }
