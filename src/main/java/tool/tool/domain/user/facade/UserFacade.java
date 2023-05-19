@@ -36,6 +36,7 @@ public class UserFacade {
                         .build()
                 )
                 .profileUrl(resource.getProfileUrl())
+                .rating(5)
                 .authority(Authority.ROLE_USER)
                 .build()
         );
