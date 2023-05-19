@@ -37,7 +37,6 @@ public class User extends BaseTimeEntity {
     private String profileUrl;
 
     @Column(name = "user_rating")
-    @ColumnDefault("5")
     private int rating;
 
     @Column(name = "rating_score")
@@ -71,13 +70,14 @@ public class User extends BaseTimeEntity {
     protected User() {}
 
     @Builder
-    public User(Long id, String name, StuNumber stuNumber, String email, String profileUrl, Authority authority) {
+    public User(Long id, String name, StuNumber stuNumber, String email, String profileUrl, Authority authority, int rating) {
         this.id = id;
         this.name = name;
         this.stuNumber = stuNumber;
         this.email = email;
         this.profileUrl = profileUrl;
         this.authority = authority;
+        this.rating = rating;
     }
 
     public User update(BsmUserResource resource) {

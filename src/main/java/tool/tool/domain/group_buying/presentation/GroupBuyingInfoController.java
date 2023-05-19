@@ -24,15 +24,15 @@ public class GroupBuyingInfoController {
 
     @GetMapping("/list")
     public GroupBuyingListResponse getGroupBuyingList(
-            @RequestParam int limit,
-            @RequestParam int offset,
+            @RequestParam int size,
+            @RequestParam int page,
             @RequestParam String sortField,
             @RequestParam String sortWay,
             @RequestParam String category,
             @RequestParam String title,
             @RequestParam String status)
     {
-        return groupBuyingListService.execute(limit, offset, sortField, sortWay, category, title, status);
+        return groupBuyingListService.execute(size, page, sortField, sortWay, category, title, status);
     }
 
     @GetMapping("/{id}")

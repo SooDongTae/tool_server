@@ -5,6 +5,9 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.domain.type.Category;
@@ -22,7 +25,28 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<GroupBuying> findGroupBuyingList(String category, int limit, int offset, String field, String sortWay, String title, String status) {
+    public Page<GroupBuying> findGroupBuyingList(String category, String field, String sortWay, String title, String status, Pageable pageable) {
+        List<GroupBuying> groupBuyingList = getGroupBuyingList(category, field, sortWay, title, status, pageable);
+        Long count = getCount(category, field, sortWay, title, status);
+        return new PageImpl<>(groupBuyingList, pageable, count);
+    }
+
+    public Long getCount(String category, String field, String sortWay, String title, String status) {
+        return jpaQueryFactory
+                .select(groupBuying.count())
+                .from(groupBuying)
+                .where(
+                        categoryEq(category),
+                        groupBuying.title.contains(title),
+                        groupBuying.status.eq(Status.valueOf(status))
+                )
+                .orderBy(
+                        sortByField(field, sortWay)
+                )
+                .fetchOne();
+    }
+
+    private List<GroupBuying> getGroupBuyingList(String category, String field, String sortWay, String title, String status, Pageable pageable) {
         return jpaQueryFactory
                 .selectFrom(groupBuying)
                 .join(groupBuying.user, user).fetchJoin()
@@ -31,20 +55,10 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
                         groupBuying.title.contains(title),
                         groupBuying.status.eq(Status.valueOf(status))
                 )
-                .limit(limit)
-                .offset(offset)
+                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
                 .orderBy(
                         sortByField(field, sortWay)
-                )
-                .fetch();
-    }
-
-    public List<GroupBuying> findGroupBuyingListByUser(User findUser) {
-        return jpaQueryFactory
-                .selectFrom(groupBuying)
-                .join(groupBuying.user, user).fetchJoin()
-                .where(
-                        groupBuying.user.eq(findUser)
                 )
                 .fetch();
     }

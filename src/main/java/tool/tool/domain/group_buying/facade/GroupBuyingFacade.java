@@ -39,7 +39,7 @@ public class GroupBuyingFacade {
 
     @Transactional
     public List<GroupBuying> getGroupBuyingByUser(User user) {
-        return groupBuyingRepository.findGroupBuyingListByUser(user);
+        return groupBuyingRepository.findByUser(user);
     }
 
     @Transactional
