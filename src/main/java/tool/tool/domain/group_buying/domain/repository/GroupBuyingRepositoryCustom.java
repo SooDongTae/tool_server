@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface GroupBuyingRepositoryCustom {
     Page<GroupBuying> findGroupBuyingList(String category, String field, String sortWay, String title, String status, Pageable pageable);
-    List<GroupBuying> findGroupBuyingListByUser(User user);
+
 }

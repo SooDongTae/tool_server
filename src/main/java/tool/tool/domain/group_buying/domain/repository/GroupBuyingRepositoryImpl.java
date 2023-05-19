@@ -46,17 +46,6 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
                 .fetchOne();
     }
 
-    @Override
-    public List<GroupBuying> findGroupBuyingListByUser(User findUser) {
-        return jpaQueryFactory
-                .selectFrom(groupBuying)
-                .join(groupBuying.user, user).fetchJoin()
-                .where(
-                        groupBuying.user.eq(findUser)
-                )
-                .fetch();
-    }
-
     private List<GroupBuying> getGroupBuyingList(String category, String field, String sortWay, String title, String status, Pageable pageable) {
         return jpaQueryFactory
                 .selectFrom(groupBuying)

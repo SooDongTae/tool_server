@@ -22,15 +22,15 @@ public class GroupBuyingListService {
 
     @Transactional
     public GroupBuyingListResponse execute(
-            int limit,
-            int offset,
+            int size,
+            int page,
             String sortField,
             String sortWay,
             String category,
             String title,
             String status
     ) {
-        Pageable pageable = PageRequest.of(offset - 1, limit);
+        Pageable pageable = PageRequest.of(page - 1, size);
         Page<GroupBuying> groupBuyingList = groupBuyingRepository.findGroupBuyingList(category, sortField, sortWay, title, status, pageable);
         return GroupBuyingListResponse.builder()
                 .groupBuyingResponseList(
