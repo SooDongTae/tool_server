@@ -14,6 +14,7 @@ import java.util.List;
 
 import static tool.tool.domain.board.board.domain.QBoard.board;
 import static tool.tool.domain.board.like.domain.QLike.like;
+import static tool.tool.domain.user.domain.QUser.user;
 
 @RequiredArgsConstructor
 public class BoardRepositoryImpl {
@@ -41,6 +42,7 @@ public class BoardRepositoryImpl {
     private List<Board> getBoards(String category, String title, Pageable pageable) {
         return jpaQueryFactory
                 .selectFrom(board)
+                .join(board.user, user).fetchJoin()
                 .where(
                         categoryEq(category),
                         board.title.contains(title)
