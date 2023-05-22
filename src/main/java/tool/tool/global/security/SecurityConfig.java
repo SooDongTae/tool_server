@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
@@ -48,6 +49,7 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/groupBuying/list").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/groupBuying/{id}").permitAll()
                 .requestMatchers("/api/groupBuying/**").hasRole(Authority.ROLE_USER.getRole())
                 .requestMatchers("/api/participant/**").hasRole(Authority.ROLE_USER.getRole())
                 .requestMatchers("/api/question/**").hasRole(Authority.ROLE_USER.getRole())
