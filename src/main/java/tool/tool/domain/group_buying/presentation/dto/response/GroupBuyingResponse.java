@@ -23,6 +23,7 @@ public class GroupBuyingResponse {
     private int cost;
     private String status;
     private LocalDateTime untilAt;
+    private String category;
 
     public static GroupBuyingResponse of(GroupBuying groupBuying) {
         return GroupBuyingResponse.builder()
@@ -40,6 +41,7 @@ public class GroupBuyingResponse {
                 .cost(groupBuying.getCost())
                 .status(groupBuying.getStatus().getName())
                 .untilAt(groupBuying.getUntilAt())
+                .category(groupBuying.getCategory().getCategory())
                 .build();
     }
 
