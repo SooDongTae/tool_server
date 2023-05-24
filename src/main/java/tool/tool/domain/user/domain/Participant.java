@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.group_buying.domain.GroupBuying;
+import tool.tool.domain.user.domain.type.JoinStatus;
 import tool.tool.global.entity.BaseTimeEntity;
 
 @Entity
@@ -20,6 +21,9 @@ public class Participant extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "group_buying_id")
     private GroupBuying groupBuying;
+
+    @Enumerated(EnumType.STRING)
+    private JoinStatus joinStatus;
 
     protected Participant() {}
 
