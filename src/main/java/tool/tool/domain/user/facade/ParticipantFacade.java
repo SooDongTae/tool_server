@@ -7,6 +7,7 @@ import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.ParticipantRepository;
+import tool.tool.domain.user.domain.type.JoinStatus;
 
 @Component
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ public class ParticipantFacade {
         return participantRepository.save(Participant.builder()
                 .groupBuying(groupBuying)
                 .user(user)
+                .joinStatus(JoinStatus.WAITING)
                 .build());
     }
 }

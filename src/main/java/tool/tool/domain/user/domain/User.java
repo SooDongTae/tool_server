@@ -46,6 +46,10 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
+    @Column(name = "join_requests")
+    @ColumnDefault("0")
+    private int joinRequests;
+
     @OneToMany(mappedBy = "user")
     private List<GroupBuying> groupBuyingList;
 
@@ -106,5 +110,13 @@ public class User extends BaseTimeEntity {
         else {
             this.ratingScore++;
         }
+    }
+
+    public void increaseJoinRequests() {
+        this.joinRequests++;
+    }
+
+    public void decreaseJoinRequests() {
+        this.joinRequests--;
     }
 }

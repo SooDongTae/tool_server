@@ -28,9 +28,10 @@ public class Participant extends BaseTimeEntity {
     protected Participant() {}
 
     @Builder
-    public Participant(Long id, User user, GroupBuying groupBuying) {
+    public Participant(Long id, User user, GroupBuying groupBuying, JoinStatus joinStatus) {
         this.id = id;
         this.user = user;
         this.groupBuying = groupBuying;
+        this.joinStatus = joinStatus;
     }
 }

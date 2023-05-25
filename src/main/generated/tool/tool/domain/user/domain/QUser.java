@@ -41,6 +41,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final NumberPath<Integer> joinRequests = createNumber("joinRequests", Integer.class);
+
     public final ListPath<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike> likes = this.<tool.tool.domain.board.like.domain.Like, tool.tool.domain.board.like.domain.QLike>createList("likes", tool.tool.domain.board.like.domain.Like.class, tool.tool.domain.board.like.domain.QLike.class, PathInits.DIRECT2);
 
     //inherited
