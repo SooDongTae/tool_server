@@ -14,6 +14,7 @@ public class UserResponse {
     private int stuNo;
     private String email;
     private String profileUrl;
+    private int joinRequests;
 
     public static UserResponse of(User user) {
         return UserResponse.builder()
@@ -24,6 +25,7 @@ public class UserResponse {
                 .stuNo(user.getStuNumber().getNum())
                 .email(user.getEmail())
                 .profileUrl(user.getProfileUrl())
+                .joinRequests(user.getJoinRequests())
                 .build();
     }
 }
