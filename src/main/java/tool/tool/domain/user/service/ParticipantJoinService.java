@@ -23,6 +23,7 @@ public class ParticipantJoinService {
         User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(request.getGroupBuyingId());
         participantFacade.saveParticipant(user, groupBuying);
+        groupBuying.getUser().increaseJoinRequests();
         groupBuying.increaseCurrentPeople();
     }
 }

@@ -31,6 +31,8 @@ public class QParticipant extends EntityPathBase<Participant> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final EnumPath<tool.tool.domain.user.domain.type.JoinStatus> joinStatus = createEnum("joinStatus", tool.tool.domain.user.domain.type.JoinStatus.class);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
 
