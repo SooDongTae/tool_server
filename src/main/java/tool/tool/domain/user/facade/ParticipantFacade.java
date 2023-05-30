@@ -8,6 +8,7 @@ import tool.tool.domain.user.domain.Participant;
 import tool.tool.domain.user.domain.User;
 import tool.tool.domain.user.domain.repository.ParticipantRepository;
 import tool.tool.domain.user.domain.type.JoinStatus;
+import tool.tool.domain.user.exception.ParticipantNotFoundException;
 
 @Component
 @RequiredArgsConstructor
@@ -22,5 +23,11 @@ public class ParticipantFacade {
                 .user(user)
                 .joinStatus(JoinStatus.WAITING)
                 .build());
+    }
+
+    @Transactional
+    public Participant findParticipantById(Long id) {
+        return participantRepository.findById(id)
+                .orElseThrow(() -> ParticipantNotFoundException.EXCEPTION);
     }
 }

@@ -7,6 +7,7 @@ import tool.tool.domain.user.domain.Participant;
 @Getter
 @Builder
 public class JoinRequestResponse {
+    private Long id;
     private String groupName;
     private int cost;
     private String userName;
@@ -17,6 +18,7 @@ public class JoinRequestResponse {
 
     public static JoinRequestResponse of(Participant participant) {
         return JoinRequestResponse.builder()
+                .id(participant.getId())
                 .groupName(participant.getGroupBuying().getContent())
                 .cost(participant.getGroupBuying().getCost())
                 .userName(participant.getUser().getName())

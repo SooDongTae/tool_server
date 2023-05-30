@@ -34,4 +34,8 @@ public class Participant extends BaseTimeEntity {
         this.groupBuying = groupBuying;
         this.joinStatus = joinStatus;
     }
+
+    public void updateJoinStatus(JoinStatus joinStatus) {
+        this.joinStatus = joinStatus;
+    }
 }
