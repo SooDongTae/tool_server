@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ParticipantRepositoryCustom {
     List<Participant> findByGroupBuying(GroupBuying groupBuying);
+    List<Participant> findIsWaitingInGroupBuying(List<GroupBuying> groupBuyingList);
 }

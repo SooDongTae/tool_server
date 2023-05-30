@@ -16,6 +16,7 @@ import tool.tool.domain.group_buying.domain.type.Status;
 import java.util.List;
 
 import static tool.tool.domain.group_buying.domain.QGroupBuying.groupBuying;
+import static tool.tool.domain.user.domain.QParticipant.participant;
 import static tool.tool.domain.user.domain.QUser.user;
 
 
@@ -30,6 +31,7 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
         Long count = getCount(category, field, sortWay, title, status);
         return new PageImpl<>(groupBuyingList, pageable, count);
     }
+
 
     public Long getCount(String category, String field, String sortWay, String title, String status) {
         return jpaQueryFactory
@@ -50,6 +52,7 @@ public class GroupBuyingRepositoryImpl implements GroupBuyingRepositoryCustom {
         return jpaQueryFactory
                 .selectFrom(groupBuying)
                 .join(groupBuying.user, user).fetchJoin()
+                .leftJoin(groupBuying.participants, participant).fetchJoin()
                 .where(
                         categoryEq(category),
                         groupBuying.title.contains(title),
