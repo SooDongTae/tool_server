@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import tool.tool.domain.board.board.domain.Board;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 public class BoardResponse {
@@ -14,6 +16,8 @@ public class BoardResponse {
     private String title;
     private int views;
     private int likes;
+    private LocalDateTime created_at;
+    private String category;
 
     public static BoardResponse of(Board board) {
         return BoardResponse.builder()
@@ -24,6 +28,8 @@ public class BoardResponse {
                 .title(board.getTitle())
                 .views(board.getViews())
                 .likes(board.getTotalLikes())
+                .created_at(board.getCreatedAt())
+                .category(board.getCategory().getCategory())
                 .build();
     }
 }
