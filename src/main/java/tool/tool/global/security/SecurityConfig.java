@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,6 +45,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui.html").permitAll()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/groupBuying/list").permitAll()
@@ -58,6 +58,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/board/**").hasRole(Authority.ROLE_USER.getRole())
                 .requestMatchers("/api/comment/**").hasRole(Authority.ROLE_USER.getRole())
                 .requestMatchers("/api/user/**").hasRole(Authority.ROLE_USER.getRole())
+                .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, authDetailsService), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new ExceptionFilter(mapper), JwtAuthenticationFilter.class);
