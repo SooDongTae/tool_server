@@ -16,7 +16,7 @@ public class BoardCreateController {
     private final BoardCreateService boardCreateService;
 
     @PostMapping()
-    public void createBoard(@RequestBody BoardCreateRequest request) {
-        boardCreateService.execute(request);
+    public Long createBoard(@RequestBody BoardCreateRequest request) {
+        return boardCreateService.execute(request);
     }
 }
