@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class BoardResponse {
+    private Long id;
     private int grade;
     private int class_no;
     private int student_no;
@@ -21,6 +22,7 @@ public class BoardResponse {
 
     public static BoardResponse of(Board board) {
         return BoardResponse.builder()
+                .id(board.getId())
                 .grade(board.getUser().getStuNumber().getGrade())
                 .class_no(board.getUser().getStuNumber().getBan())
                 .student_no(board.getUser().getStuNumber().getNum())
