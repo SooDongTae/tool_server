@@ -54,3 +54,7 @@ def querydslDir = "$buildDir/generated/querydsl"
 clean {
 	delete file (querydslDir)
 }
+
+tasks.getByName<Jar>("jar"){
+	enabled=false
+}
