@@ -10,9 +10,9 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: asdf1234
-    url: jdbc:mysql://localhost:3306/Tool?autoReconnect=true
-    username: root
+    password: tool1234
+    url: jdbc:mysql://localhost:3306/tool
+    username: tool
   redis:
     host: localhost
     port: 6379
