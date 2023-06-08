@@ -55,7 +55,6 @@ def querydslDir = "$buildDir/generated/querydsl"
 querydsl {
 	jpa = true
 	querydslSourcesDir = querydslDir
-	library = "com.querydsl:querydsl-apt"
 }
 
 compileQuerydsl{
