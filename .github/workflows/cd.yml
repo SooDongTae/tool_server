@@ -44,7 +44,7 @@ jobs:
 
       ## deploy
       - name: Deploy
-        uses: aopleboy.ssh-action@master
+        uses: appleboy/ssh-action@master
         id: deploy-prod
         with:
           host: ${{ secrets.HOST_PROD }}
