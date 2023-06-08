@@ -55,6 +55,6 @@ clean {
 	delete file (querydslDir)
 }
 
-tasks.getByName<Jar>("jar"){
-	enabled=false
+tasks.named("jar") {
+	enabled = false
 }
