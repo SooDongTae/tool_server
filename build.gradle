@@ -50,11 +50,11 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-def querydslSrcDir = 'src/main/querydsl'
+def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {
 	jpa = true
-	querydslSourcesDir = querydslSrcDir
+	querydslSourcesDir = querydslDir
 	library = "com.querydsl:querydsl-apt"
 }
 
@@ -63,9 +63,5 @@ compileQuerydsl{
 }
 
 sourceSets {
-	main {
-		java {
-			srcDirs = ['src/main/java', querydslSrcDir]
-		}
-	}
+	main.java.srcDir querydslDir
 }
