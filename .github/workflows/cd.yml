@@ -41,6 +41,13 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD }}
           docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }} .
           docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-          
 
-      
+      ## deploy
+      - name: Deploy
+        uses: aopleboy.ssh-action@master
+        id: deploy-prod
+        with:
+          host: ${{ secrets.HOST_PROD }}
+          username: ubuntu
+          key: ${{ secrets.PRIVATE_KEY }}
+          envs: GITHUB_SHA
