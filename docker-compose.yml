@@ -24,7 +24,6 @@ services:
 
   tool-application:
     image: ${DOCKER_USERNAME}/${DOCKER_REPO}
-    restart: always
     container_name: tool_application
     ports:
       - "8080:8080"
