@@ -10,16 +10,33 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 28x82rhq
+    password: asdf1234
     url: jdbc:mysql://localhost:3306/Tool?autoReconnect=true
     username: root
+  redis:
+    host: localhost
+    port: 6379
   jpa:
     database: sql-server
     generate-ddl: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     open-in-view: false
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
         format_sql: true
     show-sql: true
+
+jwt:
+  refresh-time: 1209600000 # 2주
+  access-time: 3600000 # 1시간
+  prefix: Bearer
+  header: Authorization
+  secret-key: dlxogusrhkwjstngidrhkdlehdgnsdmltool
+bsm:
+  client_id: 98fd44ad
+  secret_key: 0cf51f4d6b11d4f7e87ce830ab766a38
+image:
+  path: /Users/jeonsuhyang/Desktop
+
