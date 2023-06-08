@@ -22,14 +22,14 @@ services:
     ports:
       - 3306:3306
 
-  tool-application:
-    image: ${DOCKER_USERNAME}/${DOCKER_REPO}
-    container_name: tool_application
-    expose:
-      - 8080
-    ports:
-      - "8080:8080"
-    env_file:
-      - .env
-    environment:
-      TZ: Asia/Seoul
+#  tool-application:
+#    image: ${DOCKER_USERNAME}/${DOCKER_REPO}
+#    container_name: tool_application
+#    expose:
+#      - 8080
+#    ports:
+#      - "8080:8080"
+#    env_file:
+#      - .env
+#    environment:
+#      TZ: Asia/Seoul
