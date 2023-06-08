@@ -21,6 +21,10 @@ services:
       TZ: Asia/Seoul
     ports:
       - 3306:3306
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
 
   tool-application:
     image: ${DOCKER_USERNAME}/${DOCKER_REPO}
