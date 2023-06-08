@@ -8,6 +8,8 @@ logging:
             BasicBinder: TRACE
     web: DEBUG
 spring:
+  profiles:
+    active: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: tool1234
