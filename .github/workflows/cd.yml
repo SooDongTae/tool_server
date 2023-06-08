@@ -58,6 +58,12 @@ jobs:
             cd tool-server
             git pull origin master
             
+            rm -rf .env
+            touch .env
+            echo DB_NAME=${{ secrets.DB_NAME_USERNAME }} >> .env
+            echo DB_USERNAME=${{ secrets.DB_NAME_USERNAME }} >> .env
+            echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
+            
             sudo docker rm -f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
             docker-compose up -d
