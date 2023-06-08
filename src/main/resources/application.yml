@@ -11,10 +11,10 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: tool1234
-    url: jdbc:mysql://localhost:3306/tool
+    url: jdbc:mysql://34.64.112.157:3306/tool
     username: tool
   redis:
-    host: localhost
+    host: 34.64.112.157
     port: 6379
   jpa:
     database: sql-server
