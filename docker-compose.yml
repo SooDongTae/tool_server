@@ -23,7 +23,9 @@ services:
       - 3306:3306
 
   tool-application:
-    image: ${DOCKER_USERNAME}/${DOCKER_REPO}
+    image: ${DOCKER_USERNAME}/${DOCKER_REPO}'
+    restart: always
+    container_name: tool_application
     ports:
       - "8080:8080"
     env_file:
