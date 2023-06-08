@@ -1,6 +1,7 @@
 HELP.md
 .gradle
 .env
+
 /generated
 
 build/
