@@ -4,11 +4,11 @@ services:
   tool-nginx:
     image: nginx
     volumes:
-      - ./nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - tool-application
     environment:
-      - TZ="Asia/Seoul"
+      - TZ=Asia/Seoul
     ports:
       - "80:80"
   tool-redis:
