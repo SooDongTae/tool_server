@@ -56,6 +56,8 @@ services:
       - .env
     environment:
       TZ: Asia/Seoul
+    volumes:
+      - /home/jeon05049/images:/app/files
   certbot:
     image: certbot/certbot
     container_name: certbot_service

@@ -40,5 +40,5 @@ bsm:
   client_id: 98fd44ad
   secret_key: 0cf51f4d6b11d4f7e87ce830ab766a38
 image:
-  path: /
+  path: /app/files/
 
