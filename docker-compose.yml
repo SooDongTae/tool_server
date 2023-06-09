@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  tool-nginx:
+  nginx:
     image: nginx
     restart: always
     volumes:
