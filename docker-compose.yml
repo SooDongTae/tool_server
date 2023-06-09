@@ -3,6 +3,7 @@ version: '3'
 services:
   tool-nginx:
     image: nginx
+    restart: always
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./data/certbot/conf:/etc/letsencrypt
