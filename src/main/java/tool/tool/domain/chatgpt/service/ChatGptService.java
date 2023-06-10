@@ -11,11 +11,17 @@ public class ChatGptService {
     private final ChatgptService chatgptService;
 
     public String getChatResponse(String question) {
-        return chatgptService.sendMessage("We serve a joint purchasing platform." +
-                "After logging in, you can create a joint purchase party." +
-                "Refund is not possible." +
-                "Payment is made by the user to the account number entered at the time of party creation. " +
-                question);
+        return chatgptService.sendMessage("우리는 공동구매 플랫폼을 제공하고 있습니다." +
+                "\n" +
+                "로그인 후에, 공동구매 파티 생성이 가능합니다." +
+                "\n" +
+                "환불은 불가능 합니다." +
+                "\n" +
+                "결제는 사용자간의 송금으로 이루어 집니다. " +
+                "\n" +
+                question +
+                "\n" +
+                "챗봇처럼 간단하게 답변해줘");
     }
 
 }
