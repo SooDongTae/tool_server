@@ -55,6 +55,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/comment/{boardId}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/question/{groupBuyingId}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/answer/{questionId}").permitAll()
+                .requestMatchers("/api/chat").permitAll()
                 .requestMatchers("/api/image/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
