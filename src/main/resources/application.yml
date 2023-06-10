@@ -41,4 +41,6 @@ bsm:
   secret_key: 0cf51f4d6b11d4f7e87ce830ab766a38
 image:
   path: /app/files/
+chatgpt:
+  api-key: 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
 
