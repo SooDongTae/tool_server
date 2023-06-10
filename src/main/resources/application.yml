@@ -8,16 +8,18 @@ logging:
             BasicBinder: TRACE
     web: DEBUG
 spring:
+  config:
+    import: env.yml
   profiles:
     active: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: tool1234
-    url: jdbc:mysql://34.64.112.157:3306/tool
-    username: tool
+    password: ${tool.mysql.password}
+    url: ${tool.mysql.url}
+    username: ${tool.mysql.username}
   redis:
-    host: 34.64.112.157
-    port: 6379
+    host: ${tool.redis.host}
+    port: ${tool.redis.port}
   jpa:
     database: sql-server
     generate-ddl: true
@@ -35,12 +37,12 @@ jwt:
   access-time: 3600000 # 1시간
   prefix: Bearer
   header: Authorization
-  secret-key: dlxogusrhkwjstngidrhkdlehdgnsdmltool
+  secret-key: ${tool.jwt.secret-key}
 bsm:
-  client_id: 98fd44ad
-  secret_key: 0cf51f4d6b11d4f7e87ce830ab766a38
+  client_id: ${tool.bsm.client_id}
+  secret_key: ${tool.bsm.secret_key}
 image:
-  path: /app/files/
+  path: ${tool.image.path}
 chatgpt:
-  api-key: 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
+  api-key: ${tool.chatgpt.api-key}
 
