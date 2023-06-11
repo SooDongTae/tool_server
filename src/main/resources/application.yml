@@ -24,7 +24,7 @@ spring:
     database: sql-server
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     open-in-view: false
     properties:
       hibernate:
