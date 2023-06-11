@@ -38,7 +38,7 @@ jobs:
       ## create application-database.yaml
       - name: make env.yaml
         run: |
-          cd ./tool_server/src/main/resources
+          cd ./tool-server/src/main/resources
                  
           touch ./env.yml
                  
