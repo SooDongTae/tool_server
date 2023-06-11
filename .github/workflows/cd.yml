@@ -16,6 +16,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin' # https://github.com/actions/setup-java
 
+      - name: make env.yaml
+        run: |
+
+          touch ./src/main/resources/env.yml
+
+          echo "${{ secrets.ENV_YML }}" >> ./src/main/resources/env.yml
+          shell: bash
+
+
       ## gradle caching
       - name: Gradle Caching
         uses: actions/cache@v3
@@ -27,13 +36,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: make env.yaml
-        run: |
-          
-          touch ./src/main/resources/env.yml
-          
-          echo "${{ secrets.ENV_YML }}" >> ./src/main/resources/env.yml
-          shell: bash
 
       ## gradle build
       - name: Build with Gradle
