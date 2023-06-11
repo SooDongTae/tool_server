@@ -8,15 +8,6 @@ jobs:
   CD:
     runs-on: ubuntu-latest
     steps:
-      - name: make env.yaml
-        run: |
-          exec /bin/bash
-
-          touch ./src/main/resources/env.yml
-
-          echo "${{ secrets.ENV_YML }}" >> ./src/main/resources/env.yml
-          cat ./src/main/resources/env.yml
-
       ## jdk setting
       - uses: actions/checkout@v3
       - name: Set up JDK 17
