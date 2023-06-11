@@ -9,7 +9,7 @@ logging:
     web: DEBUG
 spring:
   config:
-    import: classpath:/env.yml
+    import: esnv.yml
   profiles:
     active: local
   datasource:

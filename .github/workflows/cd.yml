@@ -23,7 +23,7 @@ jobs:
           touch ./src/main/resources/env.yml
 
           echo "${{ secrets.ENV_YML }}" >> ./src/main/resources/env.yml
-          shell: bash
+          cat ./src/main/resources/env.yml
 
 
       ## gradle caching
