@@ -18,6 +18,7 @@ jobs:
 
       - name: make env.yaml
         run: |
+          exec /bin/bash
 
           touch ./src/main/resources/env.yml
 
