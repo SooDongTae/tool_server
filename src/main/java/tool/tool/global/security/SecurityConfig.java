@@ -51,7 +51,6 @@ public class SecurityConfig {
                 .requestMatchers("/api/groupBuying/list").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/groupBuying/{id}").permitAll()
                 .requestMatchers("/api/board/list").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/board/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/comment/{boardId}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/question/{groupBuyingId}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/answer/{questionId}").permitAll()
