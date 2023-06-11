@@ -8,14 +8,18 @@ logging:
             BasicBinder: TRACE
     web: DEBUG
 spring:
+  config:
+    import: classpath:/env.yml
+  profiles:
+    active: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${DB_PASSWORD}
-    url: jdbc:mysql://${HOST}:3306/${DB_NAME_USERNAME}
-    username: ${DB_NAME_USERNAME}
+    password: ${tool.mysql.password}
+    url: ${tool.mysql.url}
+    username: ${tool.mysql.username}
   redis:
-    host: ${HOST}
-    port: 6379
+    host: ${tool.redis.host}
+    port: ${tool.redis.port}
   jpa:
     database: sql-server
     generate-ddl: true
@@ -33,12 +37,12 @@ jwt:
   access-time: 3600000 # 1시간
   prefix: Bearer
   header: Authorization
-  secret-key: ${JWT_SECRET}
+  secret-key: ${tool.jwt.secret-key}
 bsm:
-  client_id: ${BSM_CLIENTID}
-  secret_key: ${BSM_SECRET}
+  client_id: ${tool.bsm.client_id}
+  secret_key: ${tool.bsm.secret_key}
 image:
-  path: /app/files/
+  path: ${tool.image.path}
 chatgpt:
-  api-key: ${GPT_KEY}
+  api-key: ${tool.chatgpt.api-key}
 
