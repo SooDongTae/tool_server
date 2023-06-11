@@ -37,14 +37,12 @@ jobs:
 
       ## create application-database.yaml
       - name: make env.yaml
+        uses: actions/checkout@v3
         run: |
-          cd ./tool-server/src/main/resources
                  
-          touch ./env.yml
+          touch ./src/main/resources/env.yml
                  
-          echo "${{ secrets.ENV_YML }}" >> ./env.yml
-          
-          cd /home/jeon050419
+          echo "${{ secrets.ENV_YML }}" >> ./src/main/resources/env.yml
           shell: bash
 
       ## docker build & push
