@@ -27,6 +27,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: make env.yaml
+        run: |
+          
+          touch ./src/main/resources/env.yml
+          
+          echo "${{ secrets.ENV_YML }}" >> ./src/main/resources/env.yml
+          shell: bash
+
       ## gradle build
       - name: Build with Gradle
         run: ./gradlew build -x test
@@ -34,16 +42,6 @@ jobs:
       ## text application build
       - name: Test with Gradle
         run: ./gradlew test
-
-      ## create application-database.yaml
-      - name: make env.yaml
-        uses: actions/checkout@v3
-        run: |
-                 
-          touch ./src/main/resources/env.yml
-                 
-          echo "${{ secrets.ENV_YML }}" >> ./src/main/resources/env.yml
-          shell: bash
 
       ## docker build & push
       - name: Docker build
