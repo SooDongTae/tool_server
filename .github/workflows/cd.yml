@@ -35,6 +35,18 @@ jobs:
       - name: Test with Gradle
         run: ./gradlew test
 
+      ## create application-database.yaml
+      - name: make env.yaml
+        run: |
+          cd ./src/main/resources
+                 
+          touch ./env.yml
+                 
+          echo "${{ secrets.ENV_YML }}" >> ./env.yml
+          
+          cd /home/jeon050419
+          shell: bash
+
       ## docker build & push
       - name: Docker build
         run: |
