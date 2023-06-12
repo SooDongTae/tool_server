@@ -1,5 +1,6 @@
 package tool.tool.domain.chatgpt;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ public class ChatGptController {
     private final ChatGptService chatGptService;
 
     @PostMapping()
-    public String chatGptResponse(@RequestBody() String question) {
+    public String chatGptResponse(@RequestBody() String question) throws JsonProcessingException {
         return chatGptService.getChatResponse(question);
     }
 }
