@@ -21,8 +21,8 @@ services:
     container_name: tool_redis
     hostname: tool
     command: redis-server --port 6379
-    ports:
-      - "6379:6379"
+    expose:
+      - 6379
 
   tool-database:
     image: mysql:8.0
