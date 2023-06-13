@@ -49,6 +49,7 @@ public class BoardRepositoryImpl {
                 )
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
+                .orderBy(board.createdAt.desc())
                 .fetch();
     }
 
