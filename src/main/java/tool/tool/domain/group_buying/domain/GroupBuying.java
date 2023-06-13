@@ -117,4 +117,8 @@ public class GroupBuying extends BaseTimeEntity {
     public void statusUpdate(Status status) {
         this.status = status;
     }
+
+    public boolean isMax() {
+        return (this.maxPeople <=this.currentPeople);
+    }
 }
