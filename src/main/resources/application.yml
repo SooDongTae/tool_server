@@ -20,6 +20,7 @@ spring:
   redis:
     host: ${tool.redis.host}
     port: ${tool.redis.port}
+    password: ${tool.redis.password}
   jpa:
     database: sql-server
     generate-ddl: true
