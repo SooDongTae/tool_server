@@ -74,6 +74,7 @@ jobs:
             echo DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} >> .env
             echo DOCKER_REPO=${{ secrets.DOCKER_REPO }} >> .env
             echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+            echo REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }} >> .env
             
             sudo docker rm -f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
