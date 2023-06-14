@@ -16,6 +16,7 @@ public class BoardDetailResponse{
     private int likes;
     private String myLike;
     private String content;
+    private String category;
 
     public static BoardDetailResponse of(Board board, String myLike) {
         return BoardDetailResponse.builder()
@@ -28,6 +29,7 @@ public class BoardDetailResponse{
                 .likes(board.getTotalLikes())
                 .myLike(myLike)
                 .content(board.getContent())
+                .category(board.getCategory().getCategory())
                 .build();
     }
 }
