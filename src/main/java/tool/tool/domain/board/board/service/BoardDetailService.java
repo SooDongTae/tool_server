@@ -25,7 +25,6 @@ public class BoardDetailService {
     public BoardDetailResponse execute(Long id) {
         Board board = boardFacade.findBoardById(id);
         User currentUser = userFacade.getCurrentUser();
-        userFacade.checkUser(currentUser, board.getUser());
         board.increaseViews();
         Optional<Like> like = likeRepository.findByBoardAndUser(board, currentUser);
         String myLike = like.isEmpty() ? "none" : like.get().getLikeKinds().getKind();
