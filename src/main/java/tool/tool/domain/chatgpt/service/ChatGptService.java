@@ -26,7 +26,7 @@ public class ChatGptService {
         String requestBody = "{\"model\":\"gpt-3.5-turbo\",\"messages\":[{\"role\":\"system\",\"content\":\"너는 우리가 서비스 하고 있는 공동구매 플랫폼의 챗봇이야. 우리는 공동구매 플랫폼을 제공하고 있습니다. " +
                 "로그인 후에, 공동구매 파티 생성이 가능합니다. " +
                 "환불은 불가능 합니다. " +
-                "결제는 사용자간의 송금으로 이루어집니다.\"},{\"role\":\"user\",\"content\":\"" + question + "\"}]}";
+                "결제는 사용자간의 송금으로 이루어집니다.\"},{\"role\":\"user\",\"content\":" + question + "}]}";
         String response = webClient.post()
                 .uri("https://api.openai.com/v1/chat/completions")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)

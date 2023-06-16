@@ -16,8 +16,7 @@ public class ImageSaveService {
     private final ImageConfig imageConfig;
 
     public String execute(MultipartFile file) throws IOException {
-        String type = Objects.requireNonNull(file.getContentType()).split("/")[1];
-        File file_ = new File(imageConfig.getPath(), getRandomStr() + "." + type);
+        File file_ = new File(imageConfig.getPath(), getRandomStr() + "." + "WebP");
         try {
             file.transferTo(file_);
         } catch (IOException e) {
