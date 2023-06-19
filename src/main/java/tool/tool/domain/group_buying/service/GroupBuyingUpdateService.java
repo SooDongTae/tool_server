@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import tool.tool.domain.group_buying.domain.GroupBuying;
 import tool.tool.domain.group_buying.facade.GroupBuyingFacade;
+import tool.tool.domain.group_buying.presentation.dto.GroupBuyingRequest;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
 import tool.tool.domain.image.service.ImageSaveService;
 import tool.tool.domain.user.domain.User;
@@ -22,7 +23,7 @@ public class GroupBuyingUpdateService {
     private final UserFacade userFacade;
 
     @Transactional
-    public void execute(Long id, GroupBuyingUpdateRequest request, MultipartFile file) throws IOException {
+    public void execute(Long id, GroupBuyingRequest.GroupBuyingUpdateRequest request, MultipartFile file) throws IOException {
         GroupBuying groupBuying = groupBuyingFacade.findGroupBuyingById(id);
         User currentUser = userFacade.getCurrentUser();
         User writer = groupBuying.getUser();

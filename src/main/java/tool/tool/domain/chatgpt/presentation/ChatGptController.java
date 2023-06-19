@@ -18,6 +18,6 @@ public class ChatGptController {
 
     @PostMapping()
     public String chatGptResponse(@RequestBody()ChatgptRequestDto request) throws JsonProcessingException {
-        return chatGptService.getChatResponse(request.getQuestion());
+        return chatGptService.getChatResponse(request.question());
     }
 }

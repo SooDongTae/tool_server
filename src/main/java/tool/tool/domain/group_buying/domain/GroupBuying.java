@@ -3,6 +3,7 @@ package tool.tool.domain.group_buying.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import tool.tool.domain.group_buying.presentation.dto.GroupBuyingRequest;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
 import org.hibernate.annotations.ColumnDefault;
 import tool.tool.domain.group_buying.domain.type.Category;
@@ -90,14 +91,14 @@ public class GroupBuying extends BaseTimeEntity {
         this.questions = questions;
     }
     
-    public void update(GroupBuyingUpdateRequest request) {
+    public void update(GroupBuyingRequest.GroupBuyingUpdateRequest request) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-        this.title = request.getTitle();
-        this.maxPeople = request.getMaxPeople();
-        this.content = request.getContent();
-        this.category = Category.valueOf(request.getCategory());
-        this.cost = request.getCost();
-        this.untilAt = LocalDateTime.parse(request.getUntilAt() + " 00:00:00.000", dateTimeFormatter);
+        this.title = request.title();
+        this.maxPeople = request.maxPeople();
+        this.content = request.content();
+        this.category = Category.valueOf(request.category());
+        this.cost = request.cost();
+        this.untilAt = LocalDateTime.parse(request.untilAt() + " 00:00:00.000", dateTimeFormatter);
     }
     
     public void increaseViews() {

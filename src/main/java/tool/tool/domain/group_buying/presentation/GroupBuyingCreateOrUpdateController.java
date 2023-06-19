@@ -3,6 +3,7 @@ package tool.tool.domain.group_buying.presentation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import tool.tool.domain.group_buying.presentation.dto.GroupBuyingRequest;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingCreateRequest;
 import tool.tool.domain.group_buying.presentation.dto.request.GroupBuyingUpdateRequest;
 import tool.tool.domain.group_buying.service.CancelGroupBuyingService;
@@ -23,12 +24,12 @@ public class GroupBuyingCreateOrUpdateController {
     private final CancelGroupBuyingService cancelGroupBuyingService;
 
     @PostMapping("/create")
-    public Long createGroupBuying(@RequestPart GroupBuyingCreateRequest request, @RequestPart MultipartFile file) throws IOException {
+    public Long createGroupBuying(@RequestPart GroupBuyingRequest.GroupBuyingCreateRequest request, @RequestPart MultipartFile file) throws IOException {
         return groupBuyingCreateService.execute(request, file);
     }
 
     @PutMapping("/{id}")
-    public void updateGroupBuying(@PathVariable Long id, @RequestPart GroupBuyingUpdateRequest request, @RequestPart(required = false) MultipartFile file) throws IOException {
+    public void updateGroupBuying(@PathVariable Long id, @RequestPart GroupBuyingRequest.GroupBuyingUpdateRequest request, @RequestPart(required = false) MultipartFile file) throws IOException {
         groupBuyingUpdateService.execute(id, request, file);
     }
 
