@@ -21,11 +21,17 @@ public class GroupBuyingCreateService {
     private final UserFacade userFacade;
     private final ImageSaveService imageService;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Long execute(GroupBuyingRequest.GroupBuyingCreateRequest request, MultipartFile file) throws IOException {
         User user = userFacade.findUserById(userFacade.getCurrentUser().getId());
         GroupBuying groupBuying = groupBuyingRepository.save(request.toEntity(user));
-        String imgSrc = imageService.execute(file);
+        String imgSrc;
+        try {
+            imgSrc = imageService.execute(file);
+        } catch (IOException e) {
+            // 예외 발생 시 롤백이 되어야 하므로 다시 던져줍니다.
+            throw e;
+        };
         groupBuying.updateImg(imgSrc);
         return groupBuying.getId();
     }

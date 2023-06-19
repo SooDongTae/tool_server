@@ -2,6 +2,7 @@ package tool.tool.domain.image.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import tool.tool.global.config.ImageConfig;
 
@@ -13,8 +14,9 @@ import java.util.Random;
 @Service
 @RequiredArgsConstructor
 public class ImageSaveService {
-    private final ImageConfig imageConfig;
 
+    private final ImageConfig imageConfig;
+    @Transactional(rollbackFor = IOException.class)
     public String execute(MultipartFile file) throws IOException {
         File file_ = new File(imageConfig.getPath(), getRandomStr() + "." + "WebP");
         try {

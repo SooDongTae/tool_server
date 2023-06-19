@@ -57,4 +57,31 @@ public class GroupBuyingRequest {
         }
     }
 
+    public record GroupBuyingUpdateRequest(
+            @NotBlank
+            @Size(min = 1, max = 20)
+            String title,
+
+            @Min(1)
+            int maxPeople,
+
+            @NotBlank
+            String content,
+
+            @NotBlank
+            String untilAt,
+
+            @NotBlank
+            String category,
+
+            @Min(0)
+            int cost,
+
+            @NotBlank
+            String bank,
+
+            @NotBlank
+            String account
+    ) {}
+
 }
